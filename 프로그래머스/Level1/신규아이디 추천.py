@@ -36,7 +36,8 @@ def solution(new_id):
     return answer
 
 
-// 다른 사람의 풀이
+// 다른 사람의 풀이 (정규삭)
+
 import re
 
 def solution(new_id):
