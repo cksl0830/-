@@ -36,7 +36,7 @@ def solution(new_id):
     return answer
 
 
-// 다른 사람의 풀이1
+// 다른 사람의 풀이
 import re
 
 def solution(new_id):
