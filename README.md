@@ -20,5 +20,5 @@
 - #### replace()
   > 문자대체 :: (old,new,[count])
 
-- ### zip() & enumerate()
+- #### zip() & enumerate()
   > 여러 자료형 묶을 때 사용 (동일한 개수)
