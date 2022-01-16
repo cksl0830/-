@@ -10,7 +10,7 @@ def solution(board, moves):
 
                 if len(basket) > 1:  # 바구니에 인형이 2개 이상 들어가는데
                     if basket[-2] == basket[-1]:  # 인형이 두개가 겹친다면
-                        del basket[-2]  # 터뜨린다
+                        del basket[-1]  # 터뜨린다
                         del basket[-1]  # 터뜨린다
                         answer += 2  # 터뜨린 인형 갯수 추가
 
