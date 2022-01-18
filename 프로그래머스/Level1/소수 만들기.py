@@ -16,5 +16,18 @@ def solution(nums):
     return count
   
   
-  // 다른 사람의 풀이 (풀이가 비슷해서 생략)
+// 다른 사람의 풀이 (if-else 효율적으로 사용 ,,)
+    
+def solution(nums):
+    from itertools import combinations as cb
+    answer = 0
+    for a in cb(nums, 3):
+        cand = sum(a)
+        for j in range(2, cand):
+            if cand%j==0:
+                break
+        else:              #안에 for문 나와서 else 하기
+            answer += 1
+    return answer
+
   
