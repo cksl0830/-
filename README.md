@@ -26,3 +26,13 @@
 - #### 1.map(함수,입력(리스트))    
   #### 2.lambda(매개변수:표현식) 
   > map(lamda, 인자) :: 이런식으로 묶어서 많이 사용
+
+
+## 2. 모듈 정리
+- #### collections 모듈의 counter
+  > list = ['kim', 'kim', 'park', 'choi', 'kim', 'kim', 'kim', 'choi', 'park', 'choi']
+  > dict = collections.Counter(list)
+  > print(counter)
+  > Counter({'kim': 5, 'choi': 3, 'park': 2})
+
+>>> counter끼리 뺄셈도 가능하다! (마라톤 완주 문제에서 사용) 
