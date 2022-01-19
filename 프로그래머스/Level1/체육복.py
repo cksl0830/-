@@ -5,7 +5,7 @@ def solution(n, lost, reserve):
 
     for i in res:
         if i-1 in los:
-            los.remove(i-1)          # 왼쪽부터 리스트 제거
+            los.remove(i-1)          # 왼쪽부터 리스트제거
         elif i+1 in los:
             los.remove(i+1)
 
