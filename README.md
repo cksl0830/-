@@ -36,3 +36,10 @@
   Counter({'kim': 5, 'choi': 3, 'park': 2})   
   
   > counter끼리 뺄셈도 가능하다! (마라톤 완주 문제에서 사용) 
+
+- #### itertools 의 순열과 조합
+  > chars = ['A', 'B', 'C']   
+    p = itertools.permutations(chars, 2)  # 순열   
+    c = itertools.combinations(chars, 2)  # 조합   
+    p= [('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')]   
+    c= [('A', 'B'), ('A', 'C'), ('B', 'C')]   
