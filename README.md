@@ -27,6 +27,9 @@
   #### 2.lambda(매개변수:표현식) 
   > map(lamda, 인자) :: 이런식으로 묶어서 많이 사용
 
+* #### return sorted(fail, key=lambda x: fail[x], reverse=True)    # 실패율 문제 
+  > 딕셔너리에서 sorted를 사용하면 key를 기준으로 정렬하는데 람다 함수를 사용해서 fail[x] 즉, value를 기준으로 정렬함
+
 
 ## 2. 모듈 정리
 - #### collections 모듈의 counter
