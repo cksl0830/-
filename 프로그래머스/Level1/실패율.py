@@ -1,0 +1,38 @@
+def solution(N, stages):
+    user=len(stages)
+    fail=[]
+    
+    for i in range(1, N + 1):
+        if i in stages:
+            fail.append(stages.count(i) / user)
+            user= user-stages.count(i)
+        else:
+            fail.append(0)
+                
+    new=sorted(fail,reverse=True)
+    answer=[]
+
+    for i in range(len(new)):
+        answer.append(fail.index(new[i])+1)
+        fail[fail.index(new[i])]=2  # 실패율이 1로 같을 경우 순서가 중복되니 바꿔주기  
+
+    return answer
+  
+  
+  
+// 다른 사람의 풀이  ( dic 과 람다 활용 ,,!!!! ) 
+  
+def solution(N, stages):
+
+  user = len(stages)
+  fail = {}
+
+  for i in range(1, N + 1):
+      if user != 0:
+          fail[i]=stages.count(i) / user
+          user= user-stages.count(i)
+      else:
+          fail[i]=0
+        
+    
+  return sorted(fail, key=lambda x: fail[x], reverse=True)
