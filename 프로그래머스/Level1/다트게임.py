@@ -29,7 +29,7 @@ def solution(dartResult):
     return sum(score)
             
   
-// 다른 사람의 풀이
+// 다른 사람의 풀이 (진짜 효율적인 풀이인듯 ... 그래도 가독성은 내가 더 좋은듯..) 
 
 def solution(dartResult):
     point = []
