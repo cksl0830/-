@@ -34,8 +34,8 @@ def solution(dartResult):
 def solution(dartResult):
     point = []
     answer = []
-    dartResult = dartResult.replace('10','k')
-    point = ['10' if i == 'k' else i for i in dartResult]
+    dartResult = dartResult.replace('10','k')    #10이라는 숫자를 담기위해 대체
+    point = ['10' if i == 'k' else i for i in dartResult]   #10을 담아서 다시 for문 돌리기
     print(point)
 
     i = -1
