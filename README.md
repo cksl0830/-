@@ -34,7 +34,7 @@
 * #### int('n',3) 문자열 숫자 n을 3진수에서 10진수로
 * #### int('n',5) 문자열 숫자 n을 5진수에서 10진수로
 
-* #### import math ----> gcd(n,m) // lcm(n,m)   :: gdc: n,m의 최대공약수 , lcm은 최소공배수         
+* #### import math ----> gcd(n,m) & lcm(n,m)   :: gdc: n,m의 최대공약수 , lcm은 최소공배수         
        최대 공약수와 최소공배수의 곱은 n * m 과 같다! 
 
 * #### rjust, ljust, zfill     [str 정렬함수]
