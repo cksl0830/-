@@ -35,4 +35,4 @@ def solution(N, stages):
           fail[i]=0
         
     
-  return sorted(fail, key=lambda x: fail[x], reverse=True)
+  return sorted(fail, key=lambda x: fail[x], reverse=True) 
