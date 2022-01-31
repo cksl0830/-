@@ -1,39 +1,23 @@
 def solution(name):
-    eng1="BCDEFGHIJKLMN" #13개
-    eng2="ZYXWVUTSRQPO" #12개
-    answer = 0 #이동 횟수
-    count = -1  #커서 이동
-    
-    for i in range(len(name)):
-        if name[i] in eng1+eng2:
-            answer+=eng1.find(name[i])+1
-            answer+=eng2.find(name[i])+1
-            count+=1
-        elif name[i]=='A' and len(name)-1!=i:
-            temp1=0
-            temp2=0
-            if name[i+1] in eng2:
-                temp1=(len(name)-2)+eng2.find(name[i+1])+1 #뒤로 돌아가기
-                temp2=2+eng2.find(name[i+1])+1 #그대로 가기 
-                if temp1>temp2:
-                    count+=(len(name)-3)
-                else:
-                    count+=1
-            elif name[i+1]=='A':
-                for k in range(i+1,len(name)): 
-                    if name[k] in eng1+eng2:
-                        count+=1
-                        break
-                else:
-                    break
-                    
-                    
-            
-                
-    return answer+count
-  
-  
-  # 내코드는 테케가 일부 돌아가지 않는다. 문제가 수정되어 모든 사람 코드가 돌아가지 않고 구글링해서 겨우 한개 찾았다..  
+    answer = 0
+    minMove = 0
+    change = [0]
+    n = len(name)
+    a = len(name)
+    for idx, ch in enumerate(name):
+        answer += min(ord(ch)-ord("A"),ord("Z")-ord(ch)+1)
+        if idx != 0 and ch !="A":
+            change.append(idx)
+    if len(change)>1:
+        for idx,i in enumerate(change):
+            if idx < len(change)-1:
+                a = min(i*2+n-change[idx+1],i+(n-change[idx+1])*2,a)
+            elif idx == len(change)-1:
+                a= min(a,i)
+    else:
+        a=min(change[0],n-change[0])
+
+    return answer+a
   
   
   // 다른 사람의 코드  
