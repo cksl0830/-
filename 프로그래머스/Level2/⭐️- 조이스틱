@@ -1,24 +1,25 @@
 def solution(name):
-    answer = 0
-    minMove = 0
-    change = [0]
-    n = len(name)
-    a = len(name)
-    for idx, ch in enumerate(name):
-        answer += min(ord(ch)-ord("A"),ord("Z")-ord(ch)+1)
-        if idx != 0 and ch !="A":
-            change.append(idx)
-    if len(change)>1:
-        for idx,i in enumerate(change):
-            if idx < len(change)-1:
-                a = min(i*2+n-change[idx+1],i+(n-change[idx+1])*2,a)
-            elif idx == len(change)-1:
-                a= min(a,i)
-    else:
-        a=min(change[0],n-change[0])
-
-    return answer+a
-  
+    # 문제풀이핵심: 알파벳 이동과 커서 이동횟수를 따로 구해서 둘의 합으로 결과 출력 
+    
+    answer = 0 #알파벳 이동
+    move = len(name) - 1 #커서 이동
+    
+    while name[move] == 'A' and move>=0: #맨 마지막에 A가 오는 경우 제외하고 앞으로 커서 이동
+        move -= 1
+    if move<0: #문자가 A로만 되어있으면 0 출력 
+        return answer
+    
+    
+    for i in name: #알파벳 이동 최소값 
+        answer += min(ord(i) - ord('A'), ord('Z') - ord(i) + 1)
+    for i in range(len(name)): #문자 중간 A가 있는 경우 커서를 거꾸로 갈지 앞으로 갈지 move값 계산
+        next = i+1
+        while next < len(name) and name[next] == 'A':
+            next += 1
+        move = min(move, i+i+(len(name)-next), 2*(len(name)-next)+i)
+        # 1. 앞으로 전진move값 / 2. 뒤로 돌아가기 / 3. 
+        
+    return answer+move
   
   // 다른 사람의 코드  
   
