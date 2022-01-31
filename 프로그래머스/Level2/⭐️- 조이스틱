@@ -4,11 +4,6 @@ def solution(name):
     answer = 0 #알파벳 이동
     move = len(name) - 1 #커서 이동
     
-    while name[move] == 'A' and move>=0: #맨 마지막에 A가 오는 경우 제외하고 앞으로 커서 이동
-        move -= 1
-    if move<0: #문자가 A로만 되어있으면 0 출력 
-        return answer
-    
     
     for i in name: #알파벳 이동 최소값 
         answer += min(ord(i) - ord('A'), ord('Z') - ord(i) + 1)
@@ -16,7 +11,7 @@ def solution(name):
         next = i+1
         while next < len(name) and name[next] == 'A':
             next += 1
-        move = min(move, i+i+(len(name)-next), 2*(len(name)-next)+i) # 이부분 잘 모르겠다 나중에 다시보자 ,, 
+        move = min(move, i+i+(len(name)-next), i+2*(len(name)-next)) # 이부분 잘 모르겠다 나중에 다시보자 ,, 
         
     return answer+move
   
