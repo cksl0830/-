@@ -16,8 +16,7 @@ def solution(name):
         next = i+1
         while next < len(name) and name[next] == 'A':
             next += 1
-        move = min(move, i+i+(len(name)-next), 2*(len(name)-next)+i)
-        # 1. 앞으로 전진move값 / 2. 뒤로 돌아가기 / 3. 
+        move = min(move, i+i+(len(name)-next), 2*(len(name)-next)+i) # 이부분 잘 모르겠다 나중에 다시보자 ,, 
         
     return answer+move
   
