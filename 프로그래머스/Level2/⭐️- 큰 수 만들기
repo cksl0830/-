@@ -4,7 +4,7 @@ def solution(number, k):
     
     for i in number:
         while k>0 and answer and answer[-1] < i:
-            answer.pop()
+            answer.pop() 
             k -= 1
         answer.append(i)      
                     
