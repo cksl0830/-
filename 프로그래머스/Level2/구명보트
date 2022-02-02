@@ -31,3 +31,27 @@ def solution(people, limit) :
             answer += 1
         b -= 1
     return len(people) - answer
+
+
+// 다른 사람이 풀이2 (deque 사용가능)
+
+from collections import deque
+
+def solution(people, limit):
+    boat = 0
+    people.sort()
+    q = deque(people)
+    
+    while q:
+        if len(q) > 1:
+            if q[0] + q[-1] <= limit:
+                q.pop()
+                q.popleft()
+                boat += 1
+            elif q[0] + q[-1] > limit:
+                q.pop()
+                boat += 1
+        else:
+                q.pop()
+                boat += 1
+    return boat
