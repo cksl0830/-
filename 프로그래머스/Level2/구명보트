@@ -1,0 +1,33 @@
+def solution(people, limit):
+    
+    people.sort() #오름차순 정렬
+    start=0 #가벼운사람
+    end=len(people)-1 #무거운사람
+    answer=0 #보트 최소 수
+    
+    #가장 무거운 사람과 가벼운 사람을 태워서 가능하면 태우고, 아니면 무거운 사람만 혼자 태우기!
+    while start <= end : 
+        if people[start] + people[end] <= limit:
+            start += 1
+            end -= 1
+        else:
+            end -= 1
+        answer += 1
+        
+    return answer
+    
+    
+// 다른 사람의 풀이 (짝 지었을때만 2명씩 나가고 나머진 1명씩 보트를 탄다 를 이용! 효율성 굿!)
+
+def solution(people, limit) :
+    answer = 0
+    people.sort()
+
+    a = 0
+    b = len(people) - 1
+    while a < b :
+        if people[b] + people[a] <= limit :
+            a += 1
+            answer += 1
+        b -= 1
+    return len(people) - answer
