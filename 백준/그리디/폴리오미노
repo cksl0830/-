@@ -1,0 +1,32 @@
+board = input() 
+board = board.replace("XXXX", "AAAA") 
+board = board.replace("XX", "BB") 
+
+if 'X' in board: 
+    print(-1) 
+else: 
+    print(board)
+
+
+// 다른 사람의 풀이 (처음에 내가 접근했던 풀이 동일)
+
+board=str(input())
+board+='.'
+cnt=0
+answer=0
+for i in range(len(board)):
+    if board[i]=='X': 
+        cnt+=1
+    if board[i]=='.':
+        if cnt%2==0:
+            continue
+        else:
+            answer=-1
+            break
+if answer==0:
+    board=board.replace('XXXX', 'AAAA')
+    board=board.replace('XX', 'BB')
+    print(board[:-1])
+else:
+    print(answer)
+
