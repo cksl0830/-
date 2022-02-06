@@ -7,13 +7,19 @@ def solution(name):
     
     for i in name: #알파벳 이동 최소값 
         answer += min(ord(i) - ord('A'), ord('Z') - ord(i) + 1)
-    for i in range(len(name)): #문자 중간 A가 있는 경우 커서를 거꾸로 갈지 앞으로 갈지 move값 계산
+    
+    for i in range(len(name)): # 중간에 A가 나올 때 move 최소값 (안나오면 len(name) - 1)
+        if i == 'A':  # A가 연속으로 길게 나올때 for문 반복 도는거 막기 : 시간 단축
+            continue
+        
         next = i+1
+        
         while next < len(name) and name[next] == 'A':
             next += 1
-        move = min(move, i+i+(len(name)-next), i+2*(len(name)-next)) # 이부분 잘 모르겠다 나중에 다시보자 ,, 
+        
+        if i+1!=next: # 다음 문자에 A가 나올때만 계산하기 위해 조건 추가 : 시간 단축 
+            move = min(move, i+i+(len(name)-next), 2*(len(name)-next)+i)
+        # 1.한 방향으로 쭉가기 / 2.앞으로 가다가 뒤로 돌아가기 / 3. 첨부터 뒤로갔다가 다시 앞으로 돌아오기 
         
     return answer+move
-  
- 
- 
+
