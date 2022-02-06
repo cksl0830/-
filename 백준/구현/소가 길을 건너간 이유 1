@@ -1,0 +1,29 @@
+num=int(input())
+cows=[-1]*10
+count=0
+
+for i in range(num):
+    cow,loc=map(int,input().split())
+    if cows[cow-1]==-1:
+        cows[cow-1]=loc
+    else:
+        if cows[cow-1]!=loc:
+            count+=1
+            cows[cow-1]=loc
+        else:
+            continue
+    
+print(count)
+
+
+
+// 다른 사람의 풀이 (딕셔너리 사용 굿!)
+
+a={}
+c=0
+for _ in range(int(input())):
+ x,y=map(int,input().split())
+ if x in a:
+  if a[x]!=y: c+=1
+ a[x]=y
+print(c)
