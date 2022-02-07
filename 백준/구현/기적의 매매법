@@ -1,16 +1,17 @@
-def jj(money):
+def jj(money):   // 준현이
     j_num=0
 
     for i in price:
-        j_num+=money//i
-        money=money%i
-        if money==0:
-            break
+        if money>=i:
+            j_num+=money//i
+            money=money%i
+            if money==0:
+                break
       
     answer=money+(j_num*price[-1])  
     return answer
         
-def ss(money):
+def ss(money): // 성민이
     s_num=0
     
     for i in range(len(price)-4):
