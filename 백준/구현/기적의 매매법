@@ -1,0 +1,41 @@
+def jj(money):
+    j_num=0
+
+    for i in price:
+        j_num+=money//i
+        money=money%i
+        if money==0:
+            break
+      
+    answer=money+(j_num*price[-1])  
+    return answer
+        
+def ss(money):
+    s_num=0
+    
+    for i in range(len(price)-4):
+        if price[i] < price[i+1] < price[i+2] < price[i+3]:
+            money+=s_num*price[i+3]
+            s_num=0
+        elif price[i] > price[i+1] > price[i+2] > price[i+3]:
+            s_num+=money//price[i+3]
+            money=money%price[i+3]
+    
+    answer=money+(s_num*price[-1])
+    return answer
+
+money=int(input())
+price=list(map(int,input().split())) 
+jun=jj(money)
+sung=ss(money)
+
+if jun>sung: 
+    print("BNP")
+elif jun==sung: 
+    print("SAMESAME")
+else: 
+    print("TIMING")
+        
+        
+        
+    
