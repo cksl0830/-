@@ -1,0 +1,25 @@
+a,b=map(int,input().split())
+
+graph=[]
+for i in range(a):
+    graph.append(list(map(int,input())))
+
+def dfs(x,y):  #재귀 
+    if x<0 or y<0 or x>=a or y>=b:
+        return False
+    if graph[x][y]==0:    #방문시 연결된거 싹다 
+        graph[x][y]=1     #1로 방문처리 
+        dfs(x-1,y) #상
+        dfs(x,y-1) #좌
+        dfs(x+1,y) #하
+        dfs(x,y+1) #우
+        return True       
+    return False
+
+answer=0
+for i in range(a):
+    for j in range(b):
+        if dfs(i,j)==True:
+            anwer+=1
+            
+print(answer)
