@@ -1,0 +1,38 @@
+from collections import deque
+
+a,b,c=map(int,input().split())
+
+graph=[[0]*(a+1) for _ in range(a+1)] #인접행렬
+
+for i in range(b): #간선 연결하기
+    m1,m2=map(int,input().split())
+    graph[m1][m2]=1
+    graph[m2][m1]=1
+    
+visited=[] #방문 노드
+
+def dfs(v):
+    visited.append(v)
+    print(v, end=' ')
+    
+    for i in range(len(graph[v])):
+        if graph[v][i]==1 and (i not in visited):
+            dfs(i)
+            
+def bfs(v):
+    visited=[v]
+    q=deque()
+    q.append(v)
+    
+    while q:
+        v=q.popleft()
+        print(v, end=' ')
+        
+        for i in range(len(graph[v])):
+            if graph[v][i]==1 and (i not in visited):
+                visited.append(i)
+                q.append(i)
+             
+dfs(c)
+print()
+bfs(c)
