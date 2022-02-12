@@ -1,0 +1,23 @@
+M,N=map(int,input().split())
+
+light=list(map(int,input().split()))
+
+for i in range(N):
+    a,b,c=map(int,input().split())
+    if a==1:
+        light[b-1]=c
+    elif a==2:
+        for s in range(b-1,c):
+            if light[s]==0: light[s]=1            
+            else: light[s]=0
+          
+    elif a==3:
+        for s in range(b-1,c):
+            light[s]=0
+    elif a==4:
+        for s in range(b-1,c):
+            light[s]=1
+
+
+print(' '.join(map(str,light)))
+        
