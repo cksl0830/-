@@ -63,8 +63,10 @@
     c= [('A', 'B'), ('A', 'C'), ('B', 'C')]   
 
 - #### import functools   (프로그래머스 정렬)
-  > def comparator(a,b):    
-      t1 = a+b    
-      t2 = b+a    
-      return (int(t1) > int(t2)) - (int(t1) < int(t2)) # 크면1 같으면0 작으면-1  
-    ex) 정렬 :: functools.cmp_to_key(comparator) 
+  ```
+  def comparator(a,b):    
+    t1 = a+b    
+    t2 = b+a    
+    return (int(t1) > int(t2)) - (int(t1) < int(t2)) # 크면1 같으면0 작으면-1  
+  ```    
+    ex) functools.cmp_to_key(comparator) 
