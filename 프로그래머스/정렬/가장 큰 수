@@ -1,0 +1,23 @@
+def solution(numbers):
+
+    data=[str(i) for i in numbers]  
+    data.sort(key=lambda x:x*3,reverse=True)  # 자릿수를 맞추기 위해 x*3
+
+    return str(int(''.join(data)))   # 000 을 0으로 표현하기 위해 int로 바꾸고 다시 문자열로 변환 
+    
+    
+    
+// 다른 사람의 풀이 
+
+import functools
+
+def comparator(a,b):
+    t1 = a+b
+    t2 = b+a
+    return (int(t1) > int(t2)) - (int(t1) < int(t2))   # t1이 크다면 1  // t2가 크다면 -1  //  같으면 0
+
+def solution(numbers):
+    n = [str(x) for x in numbers]
+    n.sort(key=lambda x:functools.cmp_to_key(comparator),reverse=True)
+    
+    return str(int(''.join(n)))
