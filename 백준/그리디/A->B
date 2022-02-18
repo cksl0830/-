@@ -1,0 +1,40 @@
+a,b=map(int,input().split())
+count=1
+
+while(b!=a):  #b부터 a로 거꾸로 계산 (1을 먼저 없애는게 연산횟수를 최소화 할 수 있음) 
+    temp=b
+    if b%10==1: # b의 끝자리가 1일 경우 
+        b=b//10
+        count+=1
+    elif b%2==0: # b가 짝수일 경우 2로 나누기
+        b=b//2
+        count+=1
+    
+    if temp==b: # 위의 두 연산이 이뤄지지 않았으면 -1 출력
+        print(-1)
+        break
+else:
+    print(count)
+
+
+
+// 다른 사람의 풀이 ( BFS ) 
+
+from collections import deque
+
+a,b = map(int,input().split())
+q = deque()
+q.append((a,1)) # 1은 연산횟수
+r = 0
+
+while(q):
+    n,t = q.popleft()
+    if n > b:
+        continue
+    if n == b:
+        print(t)
+        break
+    q.append((int(str(n)+"1"),t+1))
+    q.append((n*2,t+1))
+else:
+    print(-1)
