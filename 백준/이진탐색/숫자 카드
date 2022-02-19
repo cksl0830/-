@@ -1,0 +1,41 @@
+// 나의 풀이 (set 함수 사용)
+
+n=int(input())
+array=list(map(int,input().split()))
+array.sort() 
+array=set(array)
+
+m=int(input())
+array2=list(map(int,input().split()))
+
+for x in array2:
+    if x in array:
+        print(1, end=' ')
+    else:
+        print(0, end=' ')
+        
+  
+// 이진 탐색 풀이
+
+n = int(input())
+array = list(map(int, input().split()))
+array.sort()
+
+def binary_search(num):
+    start = 0
+    end = n-1
+    
+    while start <= end :
+        mid = (start+end) // 2
+        
+        if array[mid] == num :
+            return 1
+        elif array[mid] > num :
+            end = mid - 1   # 반 줄여주기 1
+        else:
+            start = mid + 1  # 반 줄여주기 2
+    return 0
+
+m= int(input())
+for num in list(map(int, input().split())):
+    print(binary_search(num), end = ' ')
