@@ -70,3 +70,25 @@
     return (int(t1) > int(t2)) - (int(t1) < int(t2)) # 크면1 같으면0 작으면-1  
   ```    
     ex) functools.cmp_to_key(comparator) 
+
+- #### from bisect import bisect_left, bisect_right
+   ```
+   def calCountsByRange(nums, left_value, right_value): 
+     r_i = bisect_right(nums, right_value) 
+     l_i = bisect_left(nums, left_value) 
+     return r_i - l_i 
+     
+   nums = [-1, -3, 5, 5, 4, 7, 1, 7, 2, 5, 6] # 5 ~ 7 을 갖는 요소의 개수 구하기 
+   nums.sort() # 정렬은 필수 
+   print(calCountsByRange(nums, 5, 7)) 
+   
+   ''' 결과값 6 '''
+   ```
+   > bisect_left(a, x)    
+   정렬된 a에 x를 삽입할 위치를 리턴해준다. x가 a에 이미 있으면 기존 항목의 앞 (왼쪽)의 위치를 반환한다.
+
+  > bisect_right(a, x)    
+  bisect_left와 거의 같은 함수인데, 이번에는 x가 a에 이미 있으면 기존 항목 뒤 (오른쪽)의 위치를 반환한다.
+
+
+
