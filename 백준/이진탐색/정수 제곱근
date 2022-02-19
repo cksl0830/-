@@ -1,0 +1,25 @@
+// 나의 풀이 (제곱근 계산)
+
+n=int(input())
+
+if int(n**0.5)==n**0.5:
+    print(int(n**0.5))
+elif int(n**0.5)<n**0.5:
+    print(int(n**0.5)+1)
+    
+
+// 이진탐색 풀이 
+
+n = int(input())
+
+start = 0
+end = n
+
+while start <= end:
+    mid = (start + end) // 2
+    if mid ** 2 < n:
+        start = mid + 1
+    else:
+        end = mid - 1
+
+print(start)
