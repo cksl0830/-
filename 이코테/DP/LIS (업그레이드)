@@ -1,0 +1,28 @@
+import bisect     
+
+x = int(input())
+arr = list(map(int, input().split()))
+
+dp = [arr[0]]
+
+for i in range(x):
+    if arr[i] > dp[-1]:
+        dp.append(arr[i])
+    else:
+        idx = bisect.bisect_left(dp, arr[i])
+        dp[idx] = arr[i]
+
+print(len(dp))
+
+
+x = 수열 A의 크기
+arr = 수열 A를 이루고 있는 A(i)를 담은 배열
+dp = 가장 긴 증가하는 부분 수열을 저장할 배열
+bisect.bisect_left(arr, x): arr가 정렬되어있다는 가정하에 x값이 들어갈 위치 반환
+
+ 
+1. dp를 arr[0]으로 초기화한다.
+2. 현재 위치(i)가 이전 위치의 원소들보다 크면 dp에 추가한다.
+3. 현재 위치(i)가 이전 위치의 원소보다 작거나 같으면, bisect.bisect_left로 이전 위치의 원소 중 가장 큰 원소의 index값을 구한다. 
+그리고 dp의 index 원소를 arr[i]로 바꿔준다.
+4. dp의 길이를 출력한다.
