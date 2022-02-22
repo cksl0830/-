@@ -19,7 +19,7 @@ else:
 
 n = int(input())
 
-dp = [5001]*(n+1)
+dp = [5001]*(n+3)
 dp[3] = dp[5] = 1
 
 for i in range(6, n+1):
