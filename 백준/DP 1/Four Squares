@@ -1,0 +1,42 @@
+// 나의 풀이 (pypy3 제출)
+
+n = int(input())
+dp = [0]*(n+5)
+dp[1]=1
+
+for i in range(2,n+1):
+    dp[i]=dp[i-1]+1
+    
+    if i**0.5==int(i**0.5):
+        dp[i]=1
+    
+    j=1
+    while (j**2)<=i:
+        dp[i]=min(dp[i],dp[i-(j**2)]+1)
+        j+=1
+        
+print(dp[n])
+    
+    
+
+// 다른 사람의 풀이 
+
+def solution(n):
+ 
+    if int(n**0.5) == n**0.5:
+        return 1
+  
+    for i in range(1, int(n**0.5) + 1):
+        if int((n - i**2)**0.5) == (n - i**2)**0.5:
+            return 2
+
+    for i in range(1, int(n**0.5) + 1):
+        for j in range(1, int((n - i**2)**0.5) + 1):
+            if int((n - i**2 - j**2)**0.5) == (n - i**2 - j**2)**0.5:
+                return 3
+
+    return 4
+
+
+n = int(input())
+print(solution(n))
