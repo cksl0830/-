@@ -1,0 +1,54 @@
+from collections import deque
+
+r,c,n=map(int,input().split())
+graph=[]
+for _ in range(r):  # 1단계 : 폭탄 설치
+    graph.append(list(input()))
+ 
+n -= 1 # 2단계 : 아무것도 하지않고 1초 지남 
+
+dx=[-1,1,0,0] #좌, 우
+dy=[0,0,-1,1] #상, 하
+    
+def findBomb(): # 폭탄의 위치를 확인
+    for i in range(r):
+        for j in range(c):
+            if graph[i][j] == 'O':  
+                q.append((i, j))
+ 
+ 
+# 3단계 : 모든 칸에 폭탄을 설치
+def allBombSet():
+    for i in range(r):
+        for j in range(c):
+            if graph[i][j] != 'O':
+                graph[i][j] = 'O'
+ 
+ 
+# 4단계 : 폭탄이 터진다.
+def bomb():
+    while q:
+        x, y = q.popleft()
+        graph[x][y] = '.'
+        for i in range(4):
+            nx= x + dx[i]
+            ny= y + dy[i]
+            if 0 <= nx < r and 0 <= ny < c:
+                if graph[nx][ny] == 'O':
+                    graph[nx][ny] = '.'
+ 
+
+while n:
+    q = deque()
+    findBomb()
+    allBombSet()
+    n -= 1
+    if n % 2== 0: # n이 짝수면 무조건 다 '0'
+        break
+    bomb()
+    n -= 1
+ 
+for i in range(r):
+    for j in range(c):
+        print(graph[i][j], end='')
+    print()
