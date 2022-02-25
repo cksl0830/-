@@ -1,0 +1,22 @@
+n=int(input())
+step=[0]
+for _ in range(n):
+    step.append(int(input()))
+
+dp=[0]*(n+3)
+dp[1]=step[1]
+if n==1:
+    print(dp[1])
+else: 
+    dp[2]=step[1]+step[2]
+
+
+    for i in range(3,n+1):
+    
+        dp[i]=max(dp[i-3]+step[i-1]+step[i],step[i]+dp[i-2])
+
+    print(dp[n])
+        
+
+
+
