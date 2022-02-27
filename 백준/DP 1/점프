@@ -1,0 +1,28 @@
+n=int(input())
+graph=[]
+
+for i in range(n):
+    graph.append(list(map(int,input().split())))
+
+dp=[[0 for _ in range(n)] for _ in range(n)]
+dp[0][0]=1
+
+for i in range(n):
+    for j in range(n):
+        if i == n-1 and j == n-1:
+            break
+        
+        down=i+graph[i][j] # 아래쪽
+        right=j+graph[i][j] # 오른쪽 
+        
+        if down < n: 
+            dp[down][j] += dp[i][j]
+        if right < n:
+            dp[i][right] += dp[i][j]
+
+print(dp[n-1][n-1])
+
+                      
+    
+    
+                
