@@ -1,0 +1,50 @@
+from collections import deque
+
+def solution(priorities, location):
+    
+    answer=0
+    q=deque([(p,i) for i,p in enumerate(priorities)])
+    
+    while len(q):
+        temp = q.popleft()
+        if q and max(q)[0] > temp[0]:   #마지막 수는 max로 비교할 수 없으므로 
+            q.append(temp)
+        else:
+            answer += 1        # 여기서 더해주고 밖에서 리턴 
+            if temp[1] == location:
+                break
+    return answer
+    
+
+// 다른 사람의 풀이 1 ( any 사용 )  
+
+def solution(priorities, location):
+    queue =  [(i,p) for i,p in enumerate(priorities)]
+    answer = 0
+    while True:
+        cur = queue.pop(0)
+        if any(cur[1] < q[1] for q in queue):   # 이 중 하나라도 true가 있으면 성립! 
+            queue.append(cur)
+        else:
+            answer += 1
+            if cur[0] == location:
+                return answer
+                
+                
+// 다른 사람의 풀이 2 ( 신선한 풀이 ) 
+
+def solution(priorities, location):
+    jobs = len(priorities)
+    answer = 0
+    cursor = 0
+    while True:
+        if max(priorities) == priorities[cursor%jobs]:  
+            priorities[cursor%jobs] = 0
+            answer += 1
+            if cursor%jobs == location:
+                break
+        cursor += 1   
+    return answer
+    
+   
+                
