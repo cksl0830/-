@@ -1,0 +1,50 @@
+def solution(N, number):
+    
+    answer = -1
+    dp = [0]
+    
+    for i in range (1,9):# i = N의 개수
+        all_case = []
+        check = int(str(N)*i) 
+        all_case.append(check) 
+        
+        for j in range(1,i):
+            for op1 in dp[j]:
+                for op2 in dp[-j] :
+                    all_case.append(op1 - op2)
+                    all_case.append(op1 + op2)
+                    all_case.append(op1 * op2)
+                    if op2 != 0:
+                        all_case.append(op1 // op2)
+                        
+        if number in all_case:
+            answer = i
+            break
+            
+        dp.append(all_case) 
+        
+
+    return answer
+    
+    
+// 다른 사람의 풀이
+
+def solution(N, number):
+    answer = 0
+
+    dp = [{int(str(N)*i)} for i in range(1, 9)]
+
+    for i in range(8):
+        for j in range(i):
+            for num1 in dp[j]:
+                for num2 in dp[i-j-1]:
+                    dp[i].add(num1 + num2)
+                    dp[i].add(num1 - num2)
+                    dp[i].add(num1 * num2)
+                    if num2:
+                        dp[i].add(num1 / num2)
+
+        if number in dp[i]:
+            return i+1
+
+    return -1
