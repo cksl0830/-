@@ -19,33 +19,30 @@ def solution(n, costs):
 
 // 다른 사람의 풀이 ( kruskal algorithm (사이클x & 유니온 알고리즘으로 같은 집합x) ) 
 
-union_find = []
+parent=[]
 
-def find(e):
-    if union_find[e] < 0: 
-        return e
-    union_find[e] = find(union_find[e])
-    return union_find[e]
-
-def merge(a, b):
-    a = find(a)
-    b = find(b)
-    if a == b: 
-        return False
-    union_find[b] = a
-    return True
+def find_parent(parent, n):
+    if parent[n] != n:
+        parent[n] = find_parent(parent, parent[n])
+    return parent[n]
+    
+def union_parent(parent, a, b):
+    a = find_parent(parent, a)
+    b = find_parent(parent, b)
+    if a > b:
+        parent[a] = b
+    else:
+        parent[b] = a
 
 def solution(n, costs):
-    global union_find
-    union_find = [-1 for _ in range(n)] #아직 방문 안함 
+    global parent
+    parent = [i for i in range(n)] #아직 방문 안함 
     costs.sort(key=lambda x: x[2]) # cost 기준으로 오름차순 정렬
-    total, count = 0, 0
+    answer=0
 
     for a, b, c in costs:
-        if merge(a, b):
-            total += c
-            count += 1
-            if count == n-1: 
-                break
+        if find_parent(parent, a) != find_parent(parent, b):
+            union_parent(parent, a, b)
+            answer += c
 
-    return total
+    return answer
