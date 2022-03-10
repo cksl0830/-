@@ -21,12 +21,12 @@ def solution(n, costs):
 
 parent=[]
 
-def find_parent(parent, n):
+def find_parent(parent, n):  #특정 원소가 속한 집합 찾기
     if parent[n] != n:
         parent[n] = find_parent(parent, parent[n])
     return parent[n]
     
-def union_parent(parent, a, b):
+def union_parent(parent, a, b): #합치기
     a = find_parent(parent, a)
     b = find_parent(parent, b)
     if a > b:
@@ -36,13 +36,16 @@ def union_parent(parent, a, b):
 
 def solution(n, costs):
     global parent
-    parent = [i for i in range(n)] #아직 방문 안함 
+    parent = [i for i in range(n)] # 자기 자신
     costs.sort(key=lambda x: x[2]) # cost 기준으로 오름차순 정렬
-    answer=0
+    answer,count=0,0
 
     for a, b, c in costs:
-        if find_parent(parent, a) != find_parent(parent, b):
+        if find_parent(parent, a) != find_parent(parent, b):   #사이클 발생여부 확인
             union_parent(parent, a, b)
             answer += c
+            count+=1
+            if count==n-1:
+                break
 
     return answer
