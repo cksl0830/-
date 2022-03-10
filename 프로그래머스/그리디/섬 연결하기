@@ -1,0 +1,51 @@
+def solution(n, costs):
+    costs.sort(key=lambda x:x[2]) #비용순으로 정렬 
+    routes = set([costs[0][0], costs[0][1]]) #방문한 섬 저장
+    answer = costs[0][2]
+    
+    while n != len(routes):
+        for i, v in enumerate(costs[1:]):
+            if v[0] in routes and v[1] in routes: #이미 방문했으면 패스 
+                continue
+                
+            if v[0] in routes or v[1] in routes: #둘중 하나만 방문시 정점 추가 
+                routes.update([v[0], v[1]]) #set이라 중복방문 안함
+                answer += v[2]
+                break
+        
+    return answer
+    
+
+
+// 다른 사람의 풀이 ( kruskal algorithm (사이클x & 유니온 알고리즘으로 같은 집합x) ) 
+
+union_find = []
+
+def find(e):
+    if union_find[e] < 0: 
+        return e
+    union_find[e] = find(union_find[e])
+    return union_find[e]
+
+def merge(a, b):
+    a = find(a)
+    b = find(b)
+    if a == b: 
+        return False
+    union_find[b] = a
+    return True
+
+def solution(n, costs):
+    global union_find
+    union_find = [-1 for _ in range(n)] #아직 방문 안함 
+    costs.sort(key=lambda x: x[2]) # cost 기준으로 오름차순 정렬
+    total, count = 0, 0
+
+    for a, b, c in costs:
+        if merge(a, b):
+            total += c
+            count += 1
+            if count == n-1: 
+                break
+
+    return total
