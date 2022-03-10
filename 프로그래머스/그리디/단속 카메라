@@ -1,0 +1,30 @@
+def solution(routes):
+    routes.sort(key=lambda x:x[1])
+    camera=routes[0][1] #첫번쨰 카메라 설치
+    answer = 1
+
+    for a,b in routes:
+        if a<=camera<=b:
+            continue
+        else:
+            answer+=1 
+            camera=b #1대 더 설치
+
+
+    return answer
+    
+ 
+// 다른 사람의 풀이 (효율성 테스트 조금 더 좋음) 
+
+def solution(routes):
+    routes = sorted(routes, key=lambda x: x[1])
+    last_camera = -30001
+
+    answer = 0
+
+    for x in routes:
+        if last_camera < x[0]:
+            answer += 1
+            last_camera = x[1]
+
+    return answer
