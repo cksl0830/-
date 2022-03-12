@@ -1,0 +1,28 @@
+// BFS 풀이
+
+from collections import deque
+
+def solution(n, computers):
+
+    answer=0
+    visited=[0 for _ in range(n)]
+
+    def bfs(i):
+        q=deque([i])
+        while q:
+            e=q.popleft()
+            visited[e]=1
+            for k in range(n):
+                if computers[e][k]==1 and visited[k]==0:
+                    q.append(k)
+
+    for x in range(n):
+        if visited[x]==0:
+            bfs(x)
+            answer+=1        
+
+    return answer
+
+
+// DFS 풀이  
+    
