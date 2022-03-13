@@ -29,7 +29,7 @@
 
 * #### return sorted(fail, key=lambda x: fail[x], reverse=True)    # 실패율 문제 
   > 딕셔너리에서 sorted를 사용하면 key를 기준으로 정렬하는데 람다 함수를 사용해서     
-  > fail[x] 즉, value를 기준으로 정렬함
+  > fail[x] 즉, value를 기준으로 정렬
 
 * #### int('n',3) 문자열 숫자 n을 3진수에서 10진수로
 * #### int('n',5) 문자열 숫자 n을 5진수에서 10진수로
@@ -69,7 +69,7 @@
   ```
   def comparator(a,b):    
     t1 = a+b    
-    t2 = b+a    
+    t2 = b+a      
     return (int(t1) > int(t2)) - (int(t1) < int(t2)) # 크면1 같으면0 작으면-1  
   ```    
     ex) functools.cmp_to_key(comparator) 
@@ -92,6 +92,6 @@
 
   > bisect_right(a, x)    
   bisect_left와 거의 같은 함수인데, 이번에는 x가 a에 이미 있으면 기존 항목 뒤 (오른쪽)의 위치를 반환한다.
-
+  
 
 
