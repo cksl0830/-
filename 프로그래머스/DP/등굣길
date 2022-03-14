@@ -1,0 +1,35 @@
+def solution(m, n, puddles):
+
+    puddles = [[j,i] for [i,j] in puddles] #문제에는 반대로 제시돼있음
+    graph=[[0]*(m+1) for _ in range(n+1)]
+    graph[1][1]=1 #시작점
+
+    for i in range(1,n+1):
+        for j in range(1,m+1):
+            if [i,j] in puddles:   #위에서랑 왼쪽에서 올 때 더해줄 때 영향을 안받기 위해 그대로 0
+                continue
+            else:
+                graph[i][j]=max(graph[i][j],graph[i-1][j]+graph[i][j-1])
+    return (graph[n][m]) % 1000000007
+    
+    
+ 
+// 다른 사람의 풀이 (시간이 더 빠름 - max비교해줄 필요 없이 1,1일때만 continue해주면 됨) 
+ 
+ def solution(m, n, puddles):
+
+    puddles = [[j,i] for [i,j] in puddles] #문제에는 반대로 제시돼있음
+    graph=[[0]*(m+1) for _ in range(n+1)]
+    graph[1][1]=1 #시작점
+
+    for i in range(1,n+1):
+        for j in range(1,m+1):
+            if i==j==1:
+                continue
+            if [i,j] in puddles:
+                continue
+            else:
+                graph[i][j]=graph[i-1][j]+graph[i][j-1]
+    return (graph[n][m]) % 1000000007
+    
+    
