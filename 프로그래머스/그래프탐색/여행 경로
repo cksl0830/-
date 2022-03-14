@@ -1,0 +1,24 @@
+from collections import defaultdict
+
+def solution(tickets):
+    answer = []
+    routes = defaultdict(list)
+
+    for i,j in tickets:
+        routes[i].append(j)
+
+    for key in routes.keys():
+        routes[key].sort(reverse=True)
+
+    stack = ['ICN'] #항상 ICN에서 출발 
+    while stack:
+        tmp = stack[-1]
+
+        if not routes[tmp]:
+            answer.append(stack.pop())
+        else:
+            stack.append(routes[tmp].pop())
+    answer.reverse()
+
+    return answer
+
