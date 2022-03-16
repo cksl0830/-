@@ -1,0 +1,23 @@
+def solution(distance, rocks, n):
+    answer = 0
+    left,right=0,distance
+    rocks.sort()
+    
+    while left<right:
+        mid=(left+right)//2
+        del_s=0 #제거 돌
+        now_s=0 #현재 돌 위치
+        for i in rocks:
+            if i-now_s<mid:
+                del_s+=1
+            else:
+                now_s=i
+            if del_s>n:
+                break
+        if del_s>n:
+            right=mid
+        else:
+            left=mid+1
+            answer=mid
+    
+    return answer
