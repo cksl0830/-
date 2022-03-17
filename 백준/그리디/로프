@@ -1,0 +1,13 @@
+n=int(input())
+s=[]
+answer=[]
+for _ in range(n):
+    s.append(int(input()))
+
+s.sort(reverse=True)
+
+
+for i in range(n):
+    answer.append(s[i]*(i+1))
+
+print(max(answer))
