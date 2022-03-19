@@ -1,0 +1,14 @@
+n=int(input())
+s=list(map(int,input().split()))
+cost=list(map(int,input().split()))
+
+answer=cost[0]
+sum=0
+
+for i in range(n-1):
+    if cost[i]<answer:
+        answer=cost[i]
+    sum+=answer*s[i]
+
+
+print(sum)
