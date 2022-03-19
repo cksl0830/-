@@ -1,0 +1,13 @@
+n=int(input())
+cost=[]
+for _ in range(n):
+    cost.append(int(input()))
+
+cost.sort(reverse=True)
+answer=0
+
+for i in range(n):
+    if cost[i]-(i)>0:
+        answer+=cost[i]-(i)
+
+print(answer)
