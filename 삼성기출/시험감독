@@ -1,21 +1,18 @@
-def solution():
-    answer = 0
-    # Master 시행
-    for i in range(N):
-        if arr[i] > 0:
-            arr[i] -= Master
-            answer += 1
- 
-        if arr[i] > 0:
-            answer += int(arr[i]/Sub)
- 
-            if arr[i] % Sub != 0:
-                answer += 1
- 
-    return answer
- 
- 
-N = int(input())
-arr = list(map(int, input().split()))
-Master, Sub = map(int, input().split())
-print(solution())
+n=int(input()) #시험장 수 
+num=list(map(int,input().split())) #시험장 응시자 수
+b,c=map(int,input().split()) #감독관 감시자 수
+
+count=0
+
+for i in num:
+    temp=i-b
+    if temp>0:
+        if temp/c==int(temp/c):
+            count+=(temp//c)+1
+        else:
+            count+=(temp//c)+2
+    else:
+        count+=1
+        
+print(count)
+
