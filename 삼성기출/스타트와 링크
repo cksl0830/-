@@ -1,0 +1,31 @@
+from itertools import combinations
+
+n=int(input())
+graph=[]
+for _ in range(n):
+    graph.append(list(map(int,input().split())))
+
+player=[i for i in range(n)]
+team=[]
+for i in combinations(player,n//2):
+    team.append(list(i))
+    
+answer=[]
+for t in range(len(team) // 2):
+    start = 0
+    for i in team[t]:
+        for j in team[t]:
+            if i==j:
+                continue
+            start += graph[i][j]
+            
+    link = 0
+    for i in team[-(t + 1)]:
+        for j in team[-(t + 1)]:
+            if i==j:
+                continue
+            link += graph[i][j]
+
+    answer.append(abs(start - link))
+
+print(min(answer))
