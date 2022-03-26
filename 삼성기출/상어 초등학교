@@ -1,0 +1,50 @@
+n = int(input())
+classroom = [[0] * n for _ in range(n)]
+like_room = [[] for _ in range((n*n)+1)]
+
+dx = [0, 0, 1, -1] #행
+dy = [1, -1, 0, 0] #열
+
+for _ in range(n*n):
+    array = list(map(int, input().split()))
+    like = array[1:]
+    like_room[array[0]] = like #좋아하는 학생의 번호 배열
+    
+    temp = []
+    for i in range(n):
+        for j in range(n):
+            sum_like = 0
+            sum_empty = 0
+            if classroom[i][j] != 0:
+                continue
+            for k in range(4):
+                nx = i + dx[k]
+                ny = j + dy[k]
+                if 0 <= nx < n and 0 <= ny < n:
+                    if classroom[nx][ny] in like: #조건1
+                        sum_like += 1
+                    if classroom[nx][ny] == 0:  #조건2 
+                        sum_empty += 1
+            temp.append((sum_like, sum_empty, i, j)) #조건3 추가
+    
+    temp.sort(key=lambda x:(-x[0], -x[1], x[2], x[3])) #내림차순이니까 - 붙이기 
+    
+    # 정렬 후 젤 앞에 있는 리스트의 행과 열의 번호에 학생 앉히기
+    classroom[temp[0][2]][temp[0][3]] = array[0]     
+  
+
+result = 0
+
+for i in range(n):
+    for j in range(n):
+        answer = 0
+        for k in range(4):
+            nx = i + dx[k]
+            ny = j + dy[k]
+            if 0 <= nx < n and 0 <= ny < n:
+                if classroom[nx][ny] in like_room[classroom[i][j]]:
+                    answer += 1
+        if answer != 0:
+            result += 10 ** (answer - 1)
+
+print(result)
