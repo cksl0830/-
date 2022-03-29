@@ -1,0 +1,57 @@
+# 뱀은 처음에 오른쪽으로 감 / 사과가 있으면 길이가 1 늘어남 / 없으면 꼬리 자름
+# 보드 범위를 벗어나거나, 자신의 몸과 부딪히면 게임 종료
+# 회전가능 : L 이면 왼쪽회전 / D면 오른쪽회전 
+
+#입력값 받기
+from collections import deque
+
+n=int(input())
+board=[[0]*(n) for _ in range(n)]
+
+k=int(input())
+for _ in range(k):
+    a,b=map(int,input().split())
+    board[a-1][b-1]=1 #사과 위치    
+
+l=int(input())
+rotate={} #문자로 저장
+for i in range(l):
+    num,word=input().split()
+    rotate[int(num)]=word
+
+#좌, 상, 우, 하 
+dx=[-1,0,1,0] 
+dy=[0,-1,0,1] 
+
+def change(d, c):
+    # 왼쪽 회전: 상(1) -> 좌(0) -> 하(3) -> 우(2) 
+    # 오른쪽 회전: 하(3) -> 좌(0) -> 상(1) -> 우(2)
+    if c == "L":
+        d = (d - 1) % 4 
+    elif c == "D":
+        d = (d + 1) % 4
+    return d
+
+y,x=0,0
+time=1
+direct=2 #초기 방향 : 오른쪽 
+board[y][x]==2 # 뱀 방문
+q=deque()
+q.append((x,y))
+while True:
+    y=y+dy[direct]
+    x=x+dx[direct]
+    if 0<=y<n and 0<=x<n and board[y][x]!=2:
+        if not board[y][x]: #사과가 없으면 
+            a,b=q.popleft()
+            board[a][b]=0 #꼬리 제거
+        board[y][x]=2
+        q.append((y,x))
+        if time in rotate.keys():
+            direct=change(direct,rotate[time])
+        time+=1
+    else:
+        break
+                
+                
+print(time)
