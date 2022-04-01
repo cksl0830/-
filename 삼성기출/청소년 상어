@@ -18,20 +18,21 @@ answer=0
 def dfs(x,y,score,graph):
     global answer
     score+=graph[x][y][0] #먹은 물고기 번호 더해주기
-    answer=max(answer,score)
+    answer=max(answer,score) #상어가 그 방향으로 가면서 가장 번호가 큰 물고기를 먹기 위해 
     graph[x][y][0]=0 #물고기 먹으면 사라짐
     
-    #상어가 먹은 후 물고기들의 움직임
+    #상어가 먹은 후 물고기들의 움직임 #2단계 
     for fish in range(1,17):
         fish_x,fish_y=-1,-1
+        temp=-1
         for i in range(4):
             for j in range(4):
                 if graph[i][j][0]==fish:
                     fish_x,fish_y=i,j
-                    break
-        if fish_x==-1 and fish_y==-1:
-            continue
-        temp=graph[fish_x][fish_y][1] #방향 번호        
+                    temp=graph[fish_x][fish_y][1] #방향 번호   
+                    break  
+        if temp==-1:  #물고기가 먹혀서 없으니  
+            continue  #다음 물고기 이동          
         
         for k in range(8):
             nd=(temp+k)%8
