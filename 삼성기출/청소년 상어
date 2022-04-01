@@ -34,27 +34,27 @@ def dfs(x,y,score,graph):
         if temp==-1:  #물고기가 먹혀서 없으니  
             continue  #다음 물고기 이동          
         
+        # 물고기 이동 및 교환
         for k in range(8):
             nd=(temp+k)%8
             nx=fish_x+dx[nd]
             ny=fish_y+dy[nd]
-            if not (0<=nx<4 and 0<=ny<4) or (nx==x and ny==y):
-                continue
-            graph[fish_x][fish_y][1]=nd
-            graph[fish_x][fish_y],graph[nx][ny]=graph[nx][ny],graph[fish_x][fish_y]
-            break
+            if 0<=nx<4 and 0<=ny<4: 
+                if not (nx==x and ny==y):
+                    graph[fish_x][fish_y][1]=nd
+                    graph[fish_x][fish_y],graph[nx][ny]=graph[nx][ny],graph[fish_x][fish_y]
+                    break
     
     # 상어 물고기 다시 먹음
-    s=graph[x][y][1]
+    shrak=graph[x][y][1]
     for i in range(1,5):
-        nx = x + dx[s]*i
-        ny = y + dy[s]*i
+        nx = x + dx[shrak]*i
+        ny = y + dy[shrak]*i
         if (0<= nx < 4 and 0<= ny < 4) and graph[nx][ny][0]!=0:
-            dfs(nx, ny, score, copy.deepcopy(graph))
+            dfs(nx, ny, score, copy.deepcopy(graph)) #dfs 돌며 그래프 변질안되게 deepcopy 필수! 
 
 dfs(0,0,0,graph) #시작 (0,0)
 print(answer)
-
 
 
 
