@@ -1,0 +1,46 @@
+bingo = []
+for _ in range(5):
+    bingo.append(list(map(int, input().split())))
+
+num = list(map(int, input().split()))
+for _ in range(4):
+    num += list(map(int, input().split()))
+
+row = [0] * 5 
+col = [0] * 5
+x= [0] * 2
+
+def game():
+    line=0
+    for n in range(25): #사회자가 하나씩 부른다.
+        for i in range(5): #빙고탐색
+            for j in range(5):
+                if num[n] == bingo[i][j]: #사회자가 부른거 찾으면
+                    bingo[i][j] = 0 #0 으로 바꾸고
+                    row[i] += 1 #행 바뀐거 체크
+                    col[j] += 1 #열 바뀐거 체크
+                    if i == j: #대각
+                        x[0] += 1
+                    if i + j == 4: #반대 대각
+                        x[1] += 1
+                    
+                    for check in range(5):
+                        if row[check]==5:
+                            row[check] = 0 # 초기화시키고
+                            line += 1 #빙고처리
+                            if line == 3:
+                                return n+1
+                        if col[check]==5:
+                            col[check] = 0 # 초기화시키고
+                            line += 1 #빙고처리
+                            if line == 3:
+                                return n+1
+                    for check in range(2):
+                        if x[check]==5:
+                            x[check] = 0 # 초기화시키고
+                            line += 1 #빙고처리
+                            if line == 3:
+                                return n+1
+                                                  
+answer=game()                  
+print(answer)
