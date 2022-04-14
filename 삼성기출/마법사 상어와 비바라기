@@ -1,0 +1,50 @@
+n,m=map(int,input().split())
+graph=[list(map(int,input().split())) for _ in range(n)]
+moves=[list(map(int,input().split())) for _ in range(m)]
+
+dx=[0,-1,-1,-1,0,1,1,1]
+dy=[-1,-1,0,1,1,1,0,-1]
+
+cx=[-1,-1,1,1]
+cy=[-1,1,1,-1]
+
+
+#step1 : 구름 생성 (시작 -> 왼쪽아래 4군데)
+cloud=[(n-2,0),(n-2,1),(n-1,0),(n-1,1)]
+
+#step2 : 구름 이동 & 물양 1증가
+for d,s in moves:
+    next=[]
+    for x,y in cloud:
+        nx=( x+dx[d-1]*s ) % n
+        ny=( y+dy[d-1]*s ) % n
+        graph[nx][ny]+=1 
+        next.append((nx,ny))
+    
+#step4 : 대각선 방향 물있는 만큼 물양 증가
+    for x,y in next:
+        for i in range(4):
+            nx=x+cx[i]
+            ny=y+cy[i]
+            if nx < 0 or ny < 0 or nx >= n or ny >= n: 
+                continue
+            elif graph[nx][ny] > 0: 
+                graph[x][y] += 1
+                    
+#step5 : 구름 사라진 곳 빼고 물양 2이상인 곳에 -2
+    cloud=[]
+    for i in range(n):
+        for j in range(n):
+            if (i,j) in next or graph[i][j]<2:
+                continue
+            graph[i][j]-=2
+            cloud.append((i,j))
+
+# 이동 끝나면 전체 물양 출력
+answer=0
+for i in range(n):
+    for j in range(n):
+        answer+=graph[i][j]
+
+print(answer)
+ 
