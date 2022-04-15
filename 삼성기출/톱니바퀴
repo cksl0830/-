@@ -1,0 +1,34 @@
+from collections import deque
+
+arr=[deque(map(int,input())) for _ in range(4)]
+    
+k=int(input())
+rot=[]
+for i in range(k):
+    rot.append(list(map(int,input().split())))
+    rot[i][0]-=1
+
+def right(x,y):
+    if x>3 or arr[x][6]==arr[x-1][2]:
+        return
+    if arr[x][6]!=arr[x-1][2]:
+        right(x+1,-y)
+        arr[x].rotate(y)
+    
+def left(x,y):
+    if x<0 or arr[x][2]==arr[x+1][6]:
+        return
+    if arr[x][2]!=arr[x+1][6]:
+        left(x-1,-y)
+        arr[x].rotate(y)
+
+for x,y in rot:
+    right(x+1,-y)
+    left(x-1,-y)
+    arr[x].rotate(y) #기존 톱니바퀴 회전 
+    
+answer=0
+for i in range(4):
+    answer+=(2**i)*arr[i][0]
+    
+print(answer)
