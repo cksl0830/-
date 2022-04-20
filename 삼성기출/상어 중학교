@@ -58,6 +58,10 @@ def rotate(a):
         for j in range(N):
             new_a[N - 1 - j][i] = a[i][j]
     return new_a
+    
+    #a = list(zip(*a))[::-1]
+    #a = [list(s) for s in a]
+    #return a
 
 
 N, M = map(int, input().split())
