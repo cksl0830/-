@@ -1,0 +1,76 @@
+from collections import deque
+
+n,m,k = map(int,input().split())
+
+#이동
+dx=[0,1,0,-1]
+dy=[1,0,-1,0]
+
+# 아래 위 왼 오른 앞 뒤 
+dice=[6,1,4,3,5,2]
+graph=[list(map(int,input().split())) for _ in range(n)]
+d=0
+
+def move(dir):
+    a,b,c,d,e,f=dice[0],dice[1],dice[2],dice[3],dice[4],dice[5]
+    #동
+    if dir==0:
+        dice[0],dice[1],dice[2],dice[3],dice[4],dice[5]=d,c,a,b,e,f
+    #서
+    elif dir==2:
+        dice[0],dice[1],dice[2],dice[3],dice[4],dice[5]=c,d,b,a,e,f
+    #남 
+    elif dir==1:
+        dice[0],dice[1],dice[2],dice[3],dice[4],dice[5]=e,f,c,d,b,a
+    #북 
+    elif dir==3:
+        dice[0],dice[1],dice[2],dice[3],dice[4],dice[5]=f,e,c,d,a,b
+
+
+def turn(a,b,d):
+    if a>b:
+        d=(d+1)%4
+        return d
+    elif a<b:
+        d=(d-1)%4
+        return d
+    else:
+        return d
+
+def bfs(x,y):
+    q=deque()
+    q.append((x,y))
+    count=1
+    visit=[[0]*m for _ in range(n)]
+    while q:
+        x,y=q.popleft()
+        visit[x][y]=1
+        for i in range(4):
+            nx=x+dx[i]
+            ny=y+dy[i]
+            if 0<=nx<n and 0<=ny<m and visit[nx][ny]==0:
+                if graph[x][y]==graph[nx][ny]:
+                    q.append((nx,ny))
+                    visit[nx][ny]=1
+                    count+=1
+    return count
+    
+score=0
+x,y=0,0
+
+for _ in range(k):
+    nx=x+dx[d]
+    ny=y+dy[d]
+    if 0<=nx<n and 0<=ny<m:
+        move(d)
+    else:
+        d=(d+2)%4
+        nx=x+dx[d]
+        ny=y+dy[d]
+        move(d)
+    
+    x,y=nx,ny
+    score+=bfs(x,y)*graph[x][y]
+    d=turn(dice[0],graph[x][y],d)
+
+print(score)
