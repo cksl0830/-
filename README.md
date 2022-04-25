@@ -18,10 +18,6 @@
 - #### replace()
   > 문자대체 :: (old,new,[count])
 
-* #### return sorted(fail, key=lambda x: fail[x], reverse=True)    # 실패율 문제 
-  > 딕셔너리에서 sorted를 사용하면 key를 기준으로 정렬하는데 람다 함수를 사용해서     
-  > fail[x] 즉, value를 기준으로 정렬
-
 * #### int('n',3) 문자열 숫자 n을 3진수에서 10진수로
 * #### int('n',5) 문자열 숫자 n을 5진수에서 10진수로
 
