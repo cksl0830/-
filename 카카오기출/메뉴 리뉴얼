@@ -1,0 +1,21 @@
+from itertools import combinations
+from collections import Counter
+
+
+def solution(orders, course):
+    answer = []
+    for i in course:
+        temp = []
+        for s in orders:
+            arr = combinations(sorted(s), i)
+            temp += arr
+        count = Counter(temp)
+        
+        
+        if count:  #한개만 있을 때를 대비하여 max값 위해 체크해줘야함 
+            if max(count.values()) >= 2:
+                for key, value in count.items():
+                    if value == max(count.values()):
+                        answer.append("".join(key))
+
+    return sorted(answer)
