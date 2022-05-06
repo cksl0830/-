@@ -24,7 +24,8 @@
 #     return answer
 
 
-// 구글링을 참고해 성공한 풀이 
+// 구글링을 참고해 성공한 풀이 (입력값 배열의 크기를 고려하지않아 정렬부분에서 시간초과 발생!)
+-> 따로 빼내서 정렬해주고 쿼리 포문 들어가면 효율성 시간초과 부분 해결가능 ! 조건 고려를 조금 더 신중하게 하자!!!! 
 
 from itertools import combinations
 from collections import defaultdict
