@@ -71,5 +71,15 @@
   > bisect_right(a, x)    
   bisect_left와 거의 같은 함수인데, 이번에는 x가 a에 이미 있으면 기존 항목 뒤 (오른쪽)의 위치를 반환한다.
   
+  
+⭐️ - #### defaultdict
 
+```
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]   
+d = defaultdict(list)    
+for k, v in s:     
+     d[k].append(v)     
+d.items()      
+>> [('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]   
+```
 
