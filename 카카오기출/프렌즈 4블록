@@ -1,0 +1,66 @@
+def solution(m, n, board):
+    answer = 0
+    
+    # board 배열로 만들기
+    for _ in range(m):               
+        temp = board.pop(0)
+        board.append([x for x in temp])
+    
+    # 터질 블록이 없을 때까지 반복
+    while True:                               
+        remove = []          
+        for i in range(m - 1):                
+            for j in range(n - 1):
+                if board[i][j] == "0":
+                    continue
+                # 연속으로 두 개가 동일한 블록이면, 밑에 두 개도 동일한지 확인
+                if board[i][j] == board[i][j + 1]: 
+                    if board[i][j] == board[i + 1][j] and board[i][j + 1] == board[i + 1][j+1]:
+                        remove.append((i, j))
+                        remove.append((i, j + 1))
+                        remove.append((i + 1, j))
+                        remove.append((i + 1, j + 1))    
+
+        if len(remove) == 0:
+            return answer 
+        
+        else:
+            answer += len(set(remove)) 
+            for x,y in set(remove):
+                board[x][y] = '0'
+            
+            gravity(board,remove)
+
+            
+# 밑으로 내리는 함수 1
+def gravity(board,remove):
+    for x,y in reversed(remove):  
+                check = x - 1
+                put = x
+
+                while check >= 0:
+                    if board[put][y] == "0" and board[check][y] != "0":
+                        board[put][y] = board[check][y]
+                        board[check][y] = "0"
+                        put -= 1
+                    
+                    check -= 1
+
+        
+
+
+# 밑으로 내리는 함수 2
+def gravity(board,m,n):
+    for x in range(m-2,-1,-1):
+        for y in range(n):
+            if board[x][y]!='0':
+                row=x
+                while True:
+                    if row+1 < m and board[row+1][y]=='0':
+                        board[row+1][y]=board[row][y]
+                        board[row][y]='0'
+                        row+=1
+                    else:
+                        break
+                        
+    
