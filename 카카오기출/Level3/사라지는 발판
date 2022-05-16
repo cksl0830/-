@@ -1,0 +1,46 @@
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+n, m = 0, 0
+
+# 반환 값이 짝수 : 플레이어가 패배함을 의미
+# 반환 값이 홀수 : 플레이어가 승리함을 의미
+# curx, cury : 현재 플레이어의 좌표
+# opx, opy : 상대 플레이어의 좌표
+def dfs(curx, cury, opx, opy, board):
+    
+    global n,m
+    
+    # 플레이어가 밟고 있는 발판이 사라졌다면
+    if board[curx][cury]==0: 
+        return 0
+    cnt = 0
+    # 플레이어를 네 방향으로 이동시켜 다음 단계로 진행할 예정
+    for i in range(4):
+        nx = curx + dx[i]
+        ny = cury + dy[i]
+        if 0<=nx<n and 0<=ny<m and board[nx][ny]:  
+            
+            board[curx][cury] = 0 #발판이 사라짐
+            val = dfs(opx, opy, nx, ny,board)+1
+            board[curx][cury] = 1 # 다시 생김 
+        
+            # 1. 현재 저장된 턴은 패배인데 다음 턴은 승리인 경우
+            if cnt % 2 == 0 and val % 2: 
+                cnt = val # 갱신
+            # 2. 현재 저장된 턴과 다음 턴이 모두 패배인 경우
+            elif cnt % 2 == 0 and val % 2 == 0: 
+                cnt = max(cnt, val) # 최대한 늦게 지는걸 선택
+            # 3. 현재 저장된 턴과 다음 턴이 모두 승리인 경우
+            elif cnt % 2 and val % 2: 
+                cnt = min(cnt, val) # 최대한 빨리 이기는걸 선택
+    return cnt
+
+def solution(board, aloc, bloc):
+    
+    global n,m
+    n = len(board)
+    m = len(board[0])
+    
+    answer= dfs(aloc[0], aloc[1], bloc[0], bloc[1], board)
+
+    return answer
