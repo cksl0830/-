@@ -1,0 +1,41 @@
+def solution(board, skill):
+    answer = 0
+    n=len(board)
+    m=len(board[0])
+    
+    # 누적합 알고리즘 
+    imos =[[0]*(m+1) for _ in range(n+1)]
+    
+    for s in skill:
+        if s[0] == 1:
+            imos[s[1]][s[2]] += -s[5] 
+            imos[s[1]][s[4]+1] += s[5] 
+            imos[s[3]+1][s[2]] += s[5]
+            imos[s[3]+1][s[4]+1] += -s[5]
+        else:
+            imos[s[1]][s[2]] += s[5]
+            imos[s[1]][s[4]+1] += -s[5]
+            imos[s[3]+1][s[2]] += -s[5]
+            imos[s[3]+1][s[4]+1] += s[5]
+    
+    # 누적합 계산 (열)
+    for i in range(n):
+        tmp=0
+        for j in range(m):
+            tmp += imos[i][j]
+            imos[i][j] = tmp
+    
+    # 누적합 계산 (행)
+    for i in range(m):
+        tmp = 0
+        for j in range(n):
+            tmp += imos[j][i]
+            imos[j][i] = tmp
+    
+    # 원래 배열에 더하기 
+    for i in range(n):
+        for j in range(m):
+            board[i][j] += imos[i][j]
+            if board[i][j]>0:
+                answer+=1
+    return answer
