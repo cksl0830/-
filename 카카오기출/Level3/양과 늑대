@@ -1,0 +1,36 @@
+def solution(info, edges):
+    answer = dfs(0, 0, 0, [0], info, edges)
+    return answer
+
+def nextNode(v,edges):
+        temp = []
+        for e in edges:
+            i, j = e
+            # 부모노드 번호 비교
+            if v == i:
+                temp.append(j)
+        return temp
+
+def dfs(sheep, wolf, cur, visit, info, edges):
+        
+        # 현 노드 양 & 늑대 판별
+        if info[cur]==0:
+            sheep += 1
+        else:
+            wolf += 1
+
+        if sheep <= wolf:
+            return 0
+        else:
+            maxSheep = sheep
+
+        # 완전 탐색 
+        for v in visit:
+            for node in nextNode(v,edges):
+                if node not in visit:
+                    visit.append(node)
+                    # 최대 양 판별
+                    maxSheep = max(maxSheep, dfs(sheep, wolf, node, visit, info, edges))
+                    visit.pop()
+                    
+        return maxSheep
