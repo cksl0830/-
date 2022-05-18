@@ -34,3 +34,57 @@ def dfs(sheep, wolf, cur, visit, info, edges):
                     visit.pop()
                     
         return maxSheep
+        
+
+// 다른 사람의 풀이
+-->>> ( 처음부터 탐색을 다시 하는 것이 아닌 q에다 저장하면서 그 지점부터 다시 탐색하게 해서 시간복잡도 축소 )
+        
+from collections import defaultdict,deque
+
+def dfs(q,sheep,wolf,info):
+    
+    global answer
+    answer = max(sheep,answer)
+
+    for _ in range(len(q)):
+        node = q.popleft()
+        # 늑대일 때 
+        if info[node] == 1:
+            # 늑대가 1마리 늘어나도 지장 없는 경우 
+            if sheep>wolf+1:
+                for n in graph[node]:
+                    q.append(n)
+                    
+                dfs(q,sheep,wolf+1,info)
+                
+                for _ in graph[node]:
+                    q.pop()
+                    
+        # 양일 때            
+        else:
+            for n in graph[node]:
+                q.append(n)
+            
+            dfs(q,sheep+1,wolf,info)
+            
+            for _ in graph[node]:
+                q.pop()
+        
+        q.append(node)
+        
+        
+def solution(info, edges):
+    
+    global answer,graph
+    answer = 0
+    graph = defaultdict(list)
+    q = deque()
+    
+    # 부모가 key 값 / value가 자식들인 그래프
+    for x,y in edges:
+        graph[x].append(y)
+    
+    q.append(0) # 루트 노드 
+    dfs(q,0,0,info)
+    
+    return answer
