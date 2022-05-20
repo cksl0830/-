@@ -17,9 +17,6 @@
 - #### replace()
   > 문자대체 :: (old,new,[count])
 
-* #### int('n',3) 문자열 숫자 n을 3진수에서 10진수로
-* #### int('n',5) 문자열 숫자 n을 5진수에서 10진수로
-
 * #### import math ----> gcd(n,m) & lcm(n,m)   :: gdc: n,m의 최대공약수 , lcm은 최소공배수         
        최대 공약수와 최소공배수의 곱은 n * m 과 같다! 
 
@@ -43,13 +40,6 @@
   Counter({'kim': 5, 'choi': 3, 'park': 2})   
   
   > counter끼리 뺄셈도 가능하다! (마라톤 완주 문제에서 사용) 
-
-- #### itertools 의 순열과 조합
-  > chars = ['A', 'B', 'C']   
-    p = itertools.permutations(chars, 2)  # 순열   
-    c = itertools.combinations(chars, 2)  # 조합   
-    p= [('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')]   
-    c= [('A', 'B'), ('A', 'C'), ('B', 'C')]   
 
 
 - #### from bisect import bisect_left, bisect_right
