@@ -60,3 +60,4 @@ def solution(gems):
                 dic[gems[end]] = 1
 
     return [temp[0]+1, temp[1]+1]
+ 
