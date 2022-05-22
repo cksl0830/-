@@ -1,0 +1,31 @@
+def solution(gems):
+    answer = []
+    kind = len(set(gems)) # 보석의 종류수
+    dic = {} # 보석 종류별로 개수를 셀 딕셔너리
+
+    start = 0 
+    end = 0 
+    temp = len(gems)+1
+
+    while end < len(gems): # 끝점이 범위안에 있을 때만 검사
+
+        if gems[end] not in dic: # 새로 발견한 보석
+            dic[gems[end]] = 1
+        else: # 기존에 존재하는 보석
+            dic[gems[end]] += 1
+        
+        end += 1 #보석을 새로 추가했으니 end칸 한 칸 뒤로
+
+        if len(dic) == kind: # dic에 저장한 종류 수와 보석 종류수가 같아졌을 때
+            while True: #start < end
+                if dic[gems[start]] > 1:  # 하나 이상 존재하면 뒤에도 더 존재한다는 뜻이므로
+                    dic[gems[start]] -= 1  # 하나를 제거
+                    start += 1 
+                elif end-start < temp: # 보석이 마지막 한개남았고, 지정한 구간보다 현재 구간이 짧으면
+                    temp = end-start # 지정한 구간 바꿔주기
+                    answer = [start+1, end]
+                    break
+                else: #구간이 더 길 면 
+                    break
+
+    return answer
