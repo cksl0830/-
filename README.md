@@ -33,7 +33,7 @@
 
 
 ## 2. 모듈 정리
-- #### collections 모듈의 counter
+- #### from collections import Counter
   > list = ['kim', 'kim', 'park', 'choi', 'kim', 'kim', 'kim', 'choi', 'park', 'choi']    
   dict = collections.Counter(list)   
   print(counter)   
