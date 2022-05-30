@@ -35,8 +35,8 @@ def solution(board):
                     dfs(nx, ny, cost + 100, i)                
                 else:                     
                     dfs(nx, ny, cost + 600, i)        
-        # 마킹 해제        
-        visit[x][y] = 0
+            # 마킹 해제        
+            visit[x][y] = 0
 
     dfs(0,0,0,0)
     return answer
