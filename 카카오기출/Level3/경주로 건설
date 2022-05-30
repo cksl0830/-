@@ -1,0 +1,44 @@
+from collections import deque
+INF=1e9
+answer = INF
+#우 하 좌 상
+dx=[0, 1, 0, -1]
+dy=[1, 0, -1, 0] 
+
+def solution(board):
+    
+    n=len(board)
+    dp=[[INF]*n for _ in range(n)]
+    visit=[[0]*n for _ in range(n)]
+    
+    def dfs(x,y,cost,dir):
+        
+        global answer
+        if dp[x][y]<cost:
+            return 
+        else:
+            dp[x][y]=cost
+        if (x,y)==(n-1,n-1):
+            if cost<answer:
+                answer=cost
+            return 
+        
+        #방문 체크
+        visit[x][y] = 1      
+        for i in range(4):            
+            nx = x + dx[i]            
+            ny = y + dy[i]            
+            if 0 <= nx < n and 0 <= ny < n and board[nx][ny]==0 and visit[nx][ny]==0:
+                if (x,y)==(0,0):
+                    dfs(nx, ny, cost + 100, i)   
+                if (dir + i) % 2 == 0:                    
+                    dfs(nx, ny, cost + 100, i)                
+                else:                     
+                    dfs(nx, ny, cost + 600, i)        
+        # 마킹 해제        
+        visit[x][y] = 0
+
+    dfs(0,0,0,0)
+    return answer
+
+    
