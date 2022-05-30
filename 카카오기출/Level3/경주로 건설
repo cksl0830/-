@@ -1,4 +1,3 @@
-from collections import deque
 INF=1e9
 answer = INF
 #우 하 좌 상
@@ -23,7 +22,7 @@ def solution(board):
                 answer=cost
             return 
         
-        #방문 체크
+        # 방문 체크
         visit[x][y] = 1      
         for i in range(4):            
             nx = x + dx[i]            
@@ -35,7 +34,8 @@ def solution(board):
                     dfs(nx, ny, cost + 100, i)                
                 else:                     
                     dfs(nx, ny, cost + 600, i)        
-            # 마킹 해제        
+            
+            # 방문 해제        
             visit[x][y] = 0
 
     dfs(0,0,0,0)
