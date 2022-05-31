@@ -1,0 +1,58 @@
+from itertools import permutations 
+INF=1e9
+
+def solution(n, weak, dist):
+    
+    if weak[-1] - weak[0] <= max(dist):
+        return 1
+    
+    w_len = len(weak)
+    # 1. weak 배열의 길이를 2배로 늘리기
+    for i in range(w_len):
+        weak.append(n+weak[i])
+        
+    answer = INF
+    # 3. 0부터 length-1까지 start 이동하면서 찾기
+    for start in range(w_len):
+        for friends in list(permutations(dist,len(dist))):
+            cnt = 1 # 투입할 친구 수
+            temp = weak[start]+friends[cnt-1]
+            # 시작점 부터 모든 취약지점 확인
+            for i in range(start, start+w_len):
+                if temp < weak[i] :
+                    cnt += 1
+                    if cnt > len(dist):
+                        break
+                    temp = weak[i]+friends[cnt-1]
+
+            answer = min(cnt,answer)
+
+    if answer > len(dist):
+        return -1
+    
+    return answer
+    
+    
+    
+    
+// 다른 사람의 풀이 (bisect 활용 --> 나도 처음에 이렇게 풀다가 풀이 변경) 
+
+
+from itertools import permutations
+from bisect import bisect_right
+
+def solution(n, weak, dist):
+    
+    dist.sort(reverse=True)
+    
+    for i in range(1, len(dist)+1):
+        arr = list(permutations(dist[:i]))
+        for start in range(len(weak)):
+            new_weak = weak[start:] + [w+n for w in weak[:start]]
+            for p in arr:
+                point = 0
+                for j in range(i):
+                    point = bisect_right(new_weak, new_weak[point]+p[j])
+                    if point >= len(weak):
+                        return i
+    return -1
