@@ -76,3 +76,40 @@ def solution(n, build_frame):
     answer.sort(key=lambda x: (x[0], x[1], x[2]))
     
     return answer
+    
+    
+    
+    
+ // 다른 사람의 풀이 (시간은 좀 더 걸리지만 효율적인 풀이) 
+ 
+ def impossible(result):
+    
+    for x, y, a in result:
+        if a == 0:  # 기둥일 때
+            if y != 0 and (x, y-1, 0) not in result and \
+                    (x-1, y, 1) not in result and (x, y, 1) not in result:
+                return True
+        else:   # 보일 때
+            if (x, y-1, 0) not in result and (x+1, y-1, 0) not in result and \
+                    not ((x-1, y, 1) in result and (x+1, y, 1) in result):
+                return True
+    return False
+
+def solution(n, build_frame):
+    
+    result = set()
+    
+    for x, y, a, b in build_frame:
+        item = (x, y, a)
+        if b: # 추가
+            result.add(item)
+            if impossible(result):
+                result.remove(item)
+        else : # 삭제
+            result.remove(item)
+            if impossible(result):
+                result.add(item)
+    
+    result=list(result)
+    result.sort(key=lambda x:(x[0],x[1],x[2]))
+    return result
