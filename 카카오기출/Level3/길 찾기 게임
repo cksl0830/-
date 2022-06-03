@@ -83,7 +83,6 @@ def postOrder(tree, root, answer):
         postOrder(tree, left, answer)
     if right != -1:
         postOrder(tree,right, answer)
-    
     answer.append(root)
 
     return answer
@@ -117,10 +116,9 @@ def solution(nodeinfo):
         dic[idx+1] = node
 
     # Root부터 왼쪽, 오른쪽 순서로 내려오는 노드 형태로 정렬
-    dic = sorted(dic.items(), key = lambda x: (-x[1][1], x[1][0]))
-    root = dic[0][0]
-    nodeDict = dict(dic)
-
+    arr = sorted(dic.items(), key = lambda x: (-x[1][1], x[1][0]))
+    root = arr[0][0]
+    nodeDict = dict(arr)
 
     # 트리의 왼쪽, 오른쪽 자식 노드의 인덱스를 -1로 초기화
     tree = defaultdict(list)
@@ -128,7 +126,7 @@ def solution(nodeinfo):
         tree[i] = [-1,-1]
 
     for i in range(1, len(tree)):
-        makeTree(tree, nodeDict, root, dic[i][0])
+        makeTree(tree, nodeDict, root, arr[i][0])
     
     # 순회 경로를 위한 빈 리스트를 매개변수로 초기화하고 함수 콜
     pre = preOrder(tree, root, [])
