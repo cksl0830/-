@@ -61,7 +61,6 @@ def solution(nodeinfo):
     
 // 트리를 만들어서 딕셔너리로 풀기 
 
-from collections import defaultdict
 import sys
 sys.setrecursionlimit(10**6)
  
@@ -73,9 +72,8 @@ def preOrder(tree, root, answer):
         preOrder(tree, left, answer)
     if right != -1:
         preOrder(tree, right, answer)
+
         
-    return answer
- 
 def postOrder(tree, root, answer):
     
     left, right = tree[root][0], tree[root][1]
@@ -84,9 +82,8 @@ def postOrder(tree, root, answer):
     if right != -1:
         postOrder(tree,right, answer)
     answer.append(root)
+    
 
-    return answer
- 
 def makeTree(tree, nodeDict, root, node):
     x, y = nodeDict[node][0], nodeDict[node][1]
 
@@ -108,10 +105,9 @@ def makeTree(tree, nodeDict, root, node):
             else:
                 root = tree[root][1]
             
-
 def solution(nodeinfo):
 
-    dic = defaultdict(list)
+    dic = {}
     for idx, node in enumerate(nodeinfo):
         dic[idx+1] = node
 
@@ -121,7 +117,7 @@ def solution(nodeinfo):
     nodeDict = dict(arr)
 
     # 트리의 왼쪽, 오른쪽 자식 노드의 인덱스를 -1로 초기화
-    tree = defaultdict(list)
+    tree = {}
     for i in range(1, len(nodeinfo)+1):
         tree[i] = [-1,-1]
 
@@ -129,7 +125,9 @@ def solution(nodeinfo):
         makeTree(tree, nodeDict, root, arr[i][0])
     
     # 순회 경로를 위한 빈 리스트를 매개변수로 초기화하고 함수 콜
-    pre = preOrder(tree, root, [])
-    post = postOrder(tree, root, [])
+    pre=[]
+    post=[]
+    preOrder(tree, root, pre)
+    postOrder(tree, root, post)
 
     return [pre,post]
