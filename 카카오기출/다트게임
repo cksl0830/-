@@ -3,8 +3,8 @@ def solution(dartResult):
     score = []
     
     for i in dartResult:
-        if i.isnumeric():
-            temp += i   #처음에 temp=i로 했는데 10 이라는 숫자때문에 에러남  
+        if i.isdigit():    # 10 일 때 고려
+            temp += i   
         elif i == 'S':
             temp = int(temp)**1
             score.append(temp)
@@ -19,30 +19,30 @@ def solution(dartResult):
             temp = ''
         elif i == '*':
             if len(score) > 1:
-                score[-2] = score[-2] * 2
-                score[-1] = score[-1] * 2
+                score[-2]*=2
+                score[-1]*=2
             else:
-                score[-1] = score[-1] * 2
+                score[-1]*=2
         elif i == '#':
-            score[-1] = score[-1] * -1
+            score[-1]*=-1
         
     return sum(score)
             
   
-// 다른 사람의 풀이 (진짜 효율적인 풀이인듯 ... 그래도 가독성은 내가 더 좋은듯..) 
+  
+// 다른 풀이
 
 def solution(dartResult):
     point = []
     answer = []
-    dartResult = dartResult.replace('10','k')    #10이라는 숫자를 담기위해 대체
-    point = ['10' if i == 'k' else i for i in dartResult]   #10을 담아서 다시 for문 돌리기
-    print(point)
+    dartResult = dartResult.replace('10','k')   
+    point = ['10' if i == 'k' else i for i in dartResult]  
 
     i = -1
-    sdt = ['S', 'D', 'T']
+    tmp = ['S', 'D', 'T']
     for j in point:
         if j in sdt :
-            answer[i] = answer[i] ** (sdt.index(j)+1)
+            answer[i] = answer[i] ** (tmp.index(j)+1)
         elif j == '*':
             answer[i] = answer[i] * 2
             if i != 0 :
