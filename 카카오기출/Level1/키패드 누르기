@@ -56,24 +56,3 @@ def solution(numbers, hand):
                     right_s = now
 
     return answer
-
-  
-// 다른 사람의 풀이 (zip함수 안쓰고 인덱스 접근해서 계산.. 나머지는 동일) 
-
- left = [1,4,7]
-    right = [3,6,9]
-    lhand = '*'
-    rhand = '#'
-    for i in numbers:
-        if i in left:
-            answer += 'L'
-            lhand = i
-        elif i in right:
-            answer += 'R'
-            rhand = i
-        else:
-            curPos = key_dict[i]
-            lPos = key_dict[lhand]
-            rPos = key_dict[rhand]
-            ldist = abs(curPos[0]-lPos[0]) + abs(curPos[1]-lPos[1])
-            rdist = abs(curPos[0]-rPos[0]) + abs(curPos[1]-rPos[1])
