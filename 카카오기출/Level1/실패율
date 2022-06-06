@@ -20,7 +20,7 @@ def solution(N, stages):
   
   
   
-// 다른 사람의 풀이  ( dic 과 람다 활용 ,,!!!! ) 
+// 다른 풀이  
   
 def solution(N, stages):
 
