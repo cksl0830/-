@@ -23,16 +23,14 @@ def solution(N, stages):
 // 다른 풀이  
   
 def solution(N, stages):
+    user = len(stages)
+    fail = {}
 
-  user = len(stages)
-  fail = {}
-
-  for i in range(1, N + 1):
-      if user != 0:
-          fail[i]=stages.count(i) / user
-          user= user-stages.count(i)
-      else:
-          fail[i]=0
-        
+    for i in range(1, N + 1):
+        if user != 0:
+            fail[i]=stages.count(i) / user
+            user-=stages.count(i)
+        else:
+            fail[i]=0
     
-  return sorted(fail, key=lambda x: fail[x], reverse=True) 
+    return sorted(fail, key=lambda x: -fail[x]) 
