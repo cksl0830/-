@@ -1,4 +1,36 @@
 from itertools import combinations
+from collections import defaultdict
+
+def solution(orders, course):
+
+    temp = defaultdict(list)
+
+    for order in orders:
+        for num in course:
+            if num > len(order):
+                break
+            else:
+                temp[num] += list(combinations(sorted(list(order)),num))
+
+    result = set()
+    for menus in temp.values():
+        max_num = 2
+        for menu in menus:
+            cnt = menus.count(menu)
+            if cnt>max_num:
+                max_num = cnt
+
+        for menu in menus:
+            if max_num == menus.count(menu):
+                m = ''.join(menu)
+                result.add(m)
+                
+    return sorted(result)
+ 
+ 
+ // 다른 풀이 
+
+from itertools import combinations
 from collections import Counter
 
 
@@ -19,3 +51,5 @@ def solution(orders, course):
                         answer.append("".join(key))
 
     return sorted(answer)
+    
+    
