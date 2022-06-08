@@ -3,9 +3,10 @@ def solution(p):
     # 1단계
     if not p:
         return ''
+    
     # 2단계
     u,v = divide(p)
-
+    
     # 3단계
     if check(u):
         # 3-1
@@ -24,7 +25,6 @@ def solution(p):
                 answer += ')'
             else:
                 answer += '('
-        #4-5
         return answer
 
 # 문자열을 u와 v로 분리
@@ -39,10 +39,9 @@ def divide(p):
         if left == right:
             return p[:idx + 1], p[idx + 1:]
 
-# 올바른 괄호 문자열인지 체크 
+# 올바른 괄호 문자열인지 
 def check(u):
     stack = []
-
     for w in u:
         if w == '(':
             stack.append(w)
