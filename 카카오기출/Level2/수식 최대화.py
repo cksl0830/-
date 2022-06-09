@@ -22,14 +22,14 @@ def calculate(exp,op):
     
     for o in op:
         stack=[]
-        while len(arr)>0:
+        while len(arr):
             temp=arr.pop(0)
             if temp==o:
                 stack.append(operation(stack.pop(), arr.pop(0), o))
             else:
                 stack.append(temp)
         arr=stack[:]
-    
+        
     return abs(int(arr[-1]))
 
 def solution(expression):
