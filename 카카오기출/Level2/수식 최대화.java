@@ -61,7 +61,7 @@ class Solution {
         long res = 0;
         if (opt == '+') {
             res = a + b;
-        } else if (opt == '-') {
+        } else if (opt == '-') { 
             res = a - b;
         } else {
             res = a * b;
