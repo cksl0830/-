@@ -1,32 +1,3 @@
-// 정확성 성공 // 효율성 실패 코드 
-
-# def solution(info, query):
-#     answer = []
-#     for q in query:
-#         cnt=0
-#         q = q.replace("and ", "")
-#         q = q.split()
-#         for i in info:
-#             i=i.split()
-#             flag=True
-#             if 
-#             if int(i[4])>=int(q[4]):
-#                 for k in range(4):
-#                     if q[k]=="-":
-#                         continue
-#                     if q[k]!=i[k]:
-#                         flag=False
-#                         break
-#                 if flag:
-#                     cnt+=1
-#         answer.append(cnt)
-        
-#     return answer
-
-
-// 구글링을 참고해 성공한 풀이 (입력값 배열의 크기를 고려하지않아 정렬부분에서 시간초과 발생!)
--> 따로 빼내서 정렬해주고 쿼리 포문 들어가면 효율성 시간초과 부분 해결가능 ! 조건 고려를 조금 더 신중하게 하자!!!! 
-
 from itertools import combinations
 from collections import defaultdict
 
@@ -48,7 +19,7 @@ def solution(info, query):
                 
     for key in dic.keys():
         dic[key].sort()
-        
+
     # query 확인 
     for q in query:
         q = q.replace("and ", "")
@@ -58,12 +29,11 @@ def solution(info, query):
 
         while '-' in key:
             key.remove('-')
-    
-        key = ''.join(key)
             
+        key = ''.join(key)
+        
         if key in dic:
             scoreList = dic[key]
-            
             left, right = 0, len(scoreList)
             while left < right:
                 mid = (left + right) // 2
