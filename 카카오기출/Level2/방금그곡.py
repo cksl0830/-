@@ -8,7 +8,7 @@ def solution(m, musicinfos):
         end = info[1].split(':')
         
         time = (int(end[0]) - int(start[0])) * 60 + int(end[1]) - int(start[1])
-
+        
         code = change(info[3])
         code = code * (time // len(code)) + code[:time % len(code)]
         
@@ -29,5 +29,4 @@ def change(code):
     code = code.replace('F#', 'f')
     code = code.replace('G#', 'g')
     code = code.replace('A#', 'a')
-    
     return code
