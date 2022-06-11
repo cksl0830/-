@@ -4,13 +4,13 @@ def solution(files):
     for file in files:
         head, number, tail = '', '', ''
 
-        flag = False
+        flag = True
         
         for i in range(len(file)): 
             if file[i].isdigit():  
                 number += file[i]
-                flag = True
-            elif not flag:  
+                flag = False
+            elif flag:  
                 head += file[i]
             else:               
                 tail = file[i:]
