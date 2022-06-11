@@ -1,10 +1,10 @@
 def solution(msg):
     
-    answer = []
     alp=[0]
     for i in range(26):
         alp.append(chr(65+i))
     
+    answer = []
     s,e=0,1
     while True:
         if e==len(msg):
