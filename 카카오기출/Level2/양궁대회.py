@@ -1,34 +1,34 @@
 maxScore = 0		# 가장 큰 점수 차이
 maxList = []		# 가장 큰 점수 차이를 낸 배열 
-                    
+ryan = [0]*11       # 라이언 스코어
+
 def solution(n, info):
-    temp = [0]*11
-    ryanScore(0, temp, n, info)		
     
-    if len(maxList)==0 : 
+    ryanScore(0, n, info)		
+    
+    if not maxList: 
         return [-1]
     else: 
         return maxList
 
 
-def ryanScore(i, score, n, apeach) :	
+def ryanScore(i, n, apeach) :	
     
     if n == 0 : 				
-        calScore(score, apeach)
+        calScore(ryan, apeach)
         return
     
     if i == 11: 
         return	
     
-    temp = apeach[i]			
-    cnt=temp+1
+    apeachScore = apeach[i]			
+    cnt=apeachScore+1
     for k in range(cnt,-1,-1):
-        if n >= k:			
-            score[i] = k
-            ryanScore(i+1, score, n-k, apeach)
-            score[i] = 0    
-            
-            
+        if n >= k:
+            ryan[i] = k
+            ryanScore(i+1, n-k, apeach)
+            ryan[i] = 0    
+               
 # 점수 계산 함수    
 def calScore(ryan, apeach):		
     global maxScore, maxList
@@ -50,11 +50,11 @@ def calScore(ryan, apeach):
             maxList = ryan[:]
             
         elif dif == maxScore:			
-            for i in range(11):	
-                if ryan[-i] > maxList[-i]:
+            for i in range(10,-1,-1):	
+                if ryan[i]==maxList[i]:
+                    continue
+                if ryan[i] > maxList[i]:
                     maxList = ryan[:]
                     break
-                elif ryan[-i] < maxList[-i]:
+                else:
                     break
-                
-                    
