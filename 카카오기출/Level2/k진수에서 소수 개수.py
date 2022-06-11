@@ -23,7 +23,7 @@ def solution(n, k):
     s = s.split('0')
     
     for num in s:
-        if not num: 
+        if not num:  
             continue 
         if isprime(int(num)): 
             cnt += 1
