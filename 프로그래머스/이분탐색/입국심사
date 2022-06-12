@@ -8,11 +8,9 @@ def solution(n, times):
         for time in times:
             people += mid // time
             if people>=n:
+                right = mid
                 break
-
-        if people >= n:
-            right = mid
-        elif people < n:
+        else:
             left = mid + 1
             
     return left
