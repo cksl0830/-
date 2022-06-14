@@ -1,0 +1,41 @@
+def convert(n):
+    temp = ''
+    while n:
+        temp += str(n%2)
+        n //= 2
+    return temp[::-1]
+        
+def solution(s):
+    answer = []
+    cnt=0
+    remove=0
+    
+    while True:
+        remove+=s.count('0')
+        s=s.split('0')
+        s=''.join(s)
+        s=convert(len(s))
+        cnt+=1
+        if s=='1':
+            break
+        
+    return [cnt,remove]
+    
+    
+// 다른 풀이 
+
+def solution(s):
+    answer = []
+    cnt=0
+    remove=0
+    
+    while True:
+        remove += s.count('0')
+        s = s.split('0')
+        s = ''.join(s)
+        s = bin(len(s))[2:]
+        cnt += 1
+        if s=='1':
+            break
+        
+    return [cnt,remove]
