@@ -8,14 +8,8 @@
 - #### isalpha()
   > 문자열이 영어 혹은 한글인지 확인
 
-- #### isdigit()
-  > 숫자로만 구성되있는지 확인 
-
 - #### strip()
   >양끝 공백 제거 (왼쪽은 lstrip / 오른쪽은 rstrip)
-
-- #### replace()
-  > 문자대체 :: (old,new,[count])
 
 * #### import math ----> gcd(n,m) & lcm(n,m)   :: gdc: n,m의 최대공약수 , lcm은 최소공배수         
        최대 공약수와 최소공배수의 곱은 n * m 과 같다! 
