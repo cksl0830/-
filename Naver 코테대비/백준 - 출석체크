@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 n,k,q,m = map(int,input().split())
 sleep=set(map(int,input().split()))
 check=set(map(int,input().split()))
