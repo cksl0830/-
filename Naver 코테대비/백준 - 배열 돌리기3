@@ -1,0 +1,81 @@
+n, m, r = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(n)]
+operation = list(map(int, input().split()))
+
+def cal1(a):
+    a = a[::-1]
+    return a
+ 
+def cal2(a):
+    for i in range(n):
+        a[i]=a[i][::-1]
+    return a
+ 
+def cal3(a):
+    a = list(zip(*a))
+    a = [list(s)[::-1] for s in a]
+    return a
+ 
+def cal4(a):
+    a = list(zip(*a))[::-1]
+    a = [list(s) for s in a]
+    return a
+
+def cal5():
+    temp = [[0] * m for _ in range(n)]
+    for i in range(n // 2):    # 1 -> 2
+        for j in range(m // 2):
+            temp[i][j + (m//2)] = arr[i][j]
+ 
+    for i in range(n // 2):    # 2 -> 3
+        for j in range(m // 2, m):
+            temp[i + n // 2][j] = arr[i][j]
+ 
+    for i in range(n // 2, n):    # 3 -> 4
+        for j in range(m // 2, m):
+            temp[i][j - m // 2] = arr[i][j]
+ 
+    for i in range(n // 2, n):    # 4 -> 1
+        for j in range(m // 2):
+            temp[i - n // 2][j] = arr[i][j]
+ 
+    return temp
+ 
+def cal6():
+    temp = [[0] * m for _ in range(n)]
+    for i in range(n // 2):    # 1 -> 4
+        for j in range(m // 2):
+            temp[i + n // 2][j] = arr[i][j]
+ 
+    for i in range(n // 2, n):    # 4 -> 3
+        for j in range(m // 2):
+            temp[i][j + m // 2] = arr[i][j]
+ 
+    for i in range(n // 2, n):    # 3 -> 2
+        for j in range(m // 2, m):
+            temp[i - n // 2][j] = arr[i][j]
+ 
+    for i in range(n // 2):    # 2 -> 1
+        for j in range(m // 2, m):
+            temp[i][j - m // 2] = arr[i][j]
+ 
+    return temp
+
+for oper in operation:
+    if oper == 1:
+        arr=cal1(arr)
+    elif oper == 2:
+        arr=cal2(arr)
+    elif oper == 3:
+        arr=cal3(arr)
+        n,m=m,n
+    elif oper == 4:
+        arr=cal4(arr)
+        n,m=m,n
+    elif oper == 5:
+        arr=cal5()
+    else:
+        arr=cal6()
+ 
+for i in arr:
+    print(*i)
