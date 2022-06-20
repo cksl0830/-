@@ -5,9 +5,6 @@
 - #### strip()
   >양끝 공백 제거 (왼쪽은 lstrip / 오른쪽은 rstrip)
 
-* #### import math ----> gcd(n,m) & lcm(n,m)   :: gdc: n,m의 최대공약수 , lcm은 최소공배수         
-       최대 공약수와 최소공배수의 곱은 n * m 과 같다! 
-
 * #### rjust, ljust, zfill     [str 정렬함수]
   > 오른쪽 정렬, 왼쪽 정렬, 왼쪽부터 0으로 채움    
   > val = "77".rjust(5, "0") --> '00077'    
