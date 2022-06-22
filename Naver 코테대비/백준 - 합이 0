@@ -1,0 +1,24 @@
+from bisect import bisect_left
+
+N=int(input())
+data=list(map(int,input().split()))
+data.sort()
+
+answer = 0
+for i in range(len(data)-2):
+    left,right = i+1, N-1
+    while left < right: 
+        temp = data[i]+data[left]+data[right]   # 세 수의 합
+        if temp>0:
+            right-=1
+        else:
+            if temp==0:
+                if data[left]==data[right]:
+                    answer+=(right-left)
+                else:
+                    idx=bisect_left(data,data[right])
+                    answer+=right-idx+1
+            left+=1
+
+print(answer)
+        
