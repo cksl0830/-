@@ -7,7 +7,7 @@ data.sort()
 answer = 0
 for i in range(len(data)-2):
     left,right = i+1, N-1
-    while left < right: 
+    while left <= right: 
         temp = data[i]+data[left]+data[right]   # 세 수의 합
         if temp>0:
             right-=1
