@@ -1,0 +1,49 @@
+def check(now,next):
+    if next==6:
+        now+=1
+        next=now+1
+    if now==5:
+        return True 
+    
+    for i in range(3):
+        if datas[now][i]>0:
+            if i==0:
+                temp=2
+            elif i==1:
+                temp=1
+            else:
+                temp=0
+            if datas[next][temp]>0:
+                datas[now][i] -= 1
+                datas[next][temp] -= 1
+                
+                if check(now,next+1):
+                    return True
+                
+                datas[now][i] += 1
+                datas[next][temp] += 1
+    return False
+
+answer=[]
+for _ in range(4):
+    global datas
+    flag=True
+    datas=[]
+    data=list(map(int,input().split()))
+    
+    for k in range(0,18,3):
+        datas.append(data[k:k+3]) 
+    for d in datas:
+        if sum(d)>5:
+            flag=False
+            break
+    if not flag:
+        answer.append(0)
+        continue
+    
+    if check(0,1):
+        answer.append(1)
+    else:
+        answer.append(0)
+
+print(*answer)
