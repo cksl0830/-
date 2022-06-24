@@ -1,0 +1,23 @@
+from collections import deque
+
+n=int(input())
+arr=list(map(int,input().split()))
+start=int(input())
+d=[1,-1]
+
+def bfs(x):
+	q=deque()
+	q.append(x)
+	visit=[0]*n
+	visit[x]=1
+	while q:
+		x=q.popleft()
+		for i in range(2):
+			nx = x + (arr[x]*d[i])
+			if 0<=nx<n and not visit[nx]:
+				visit[nx]=1
+				q.append(nx)
+
+	return sum(visit)			
+
+print(bfs(start-1))
