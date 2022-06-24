@@ -1,0 +1,38 @@
+from collections import deque
+
+N, M = map(int, input().split())
+graph = [list(map(int, input().split())) for _ in range(N)]
+sx, sy, sd = map(int, input().split())
+ex, ey, ed = map(int, input().split())
+dx = [None, 0, 0, 1, -1]
+dy = [None, 1, -1, 0, 0]
+
+
+def bfs():
+    q = deque()
+    q.append((0, sx-1, sy-1, sd))
+    visit = [[[0]*5 for _ in range(M)] for _ in range(N)]
+    visit[sx-1][sy-1][sd] = 1
+    while q:
+        cost, x, y, dir = q.popleft()
+        if (x, y, dir) == (ex-1, ey-1, ed):
+            return cost
+        for i in range(1,4):
+            nx = x + (dx[dir]*i)
+            ny = y + (dy[dir]*i)
+            if not (0 <= nx < N and 0 <= ny < M) or graph[nx][ny]:
+                break
+            if not visit[nx][ny][dir]:
+                visit[nx][ny][dir] = 1
+                q.append((cost+1, nx, ny, dir))
+                
+        for i in range(1,5):
+            if dir != i and not visit[x][y][i]:
+                visit[x][y][i] = 1
+                if (dir == 1 and i == 2) or (dir == 2 and i == 1) or (dir == 3 and i == 4) or (dir == 4 and i == 3):
+                    q.append((cost+2, x, y, i))
+                else:
+                    q.append((cost+1, x, y, i))
+
+
+print(bfs())
