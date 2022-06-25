@@ -1,0 +1,17 @@
+def solution(s):
+    answer=''
+    space=' '
+    s=s.split(' ')
+    for w in s:
+        if w=="":
+            answer+=space
+            continue
+        w = w.lower()
+        if w[0].isdigit():
+            answer+=str(w)
+        else:
+            first=w[0].upper()
+            answer+= first + str(w)[1:]
+        answer+=space
+            
+    return answer[:-1]
