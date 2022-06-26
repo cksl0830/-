@@ -1,0 +1,27 @@
+from collections import Counter
+
+def solution(a):
+    answer = 0
+    if len(a) < 2:
+        return 0
+    
+    counter = Counter(a)
+    
+    for key in counter.keys():
+        # 이부분이 포인트!!! 시간초과 안나도록! 
+        if counter[key]*2 < answer: # 교집합 최대는 2배이므로 작으면 진행 안함 
+            continue
+            
+        idx = 0
+        temp = 0 # 길이
+        while idx < len(a)-1:
+            if (a[idx] != key and a[idx+1] != key) or a[idx] == a[idx+1]:
+                idx += 1
+                continue
+                
+            temp += 2
+            idx += 2
+        
+        answer = max(answer, temp)
+        
+    return answer
