@@ -1,0 +1,24 @@
+def solution(s):
+    answer = 0
+    dic={'[':']','{':'}','(':')'}
+    
+    for i in range(len(s)):
+        arr = list(s[i:] + s[:i])
+        stack=[]
+        flag=True
+        while arr:
+            temp=arr.pop(0)
+            if temp in dic.keys():
+                stack.append(temp)
+            else:
+                if not stack:
+                    flag=False
+                    break
+                key=stack.pop()
+                if dic[key]!=temp:
+                    flag=False
+                    break
+        if not stack and flag:
+            answer+=1
+        
+    return answer
