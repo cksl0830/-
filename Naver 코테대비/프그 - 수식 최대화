@@ -1,0 +1,43 @@
+from itertools import permutations
+
+def operation(num1, num2, op):
+    if op == '+':
+        return str(int(num1) + int(num2))
+    if op == '-':
+        return str(int(num1) - int(num2))
+    if op == '*':
+        return str(int(num1) * int(num2))
+    
+def calculate(exp,op):
+    arr=[]
+    temp=""
+    for i in exp:
+        if i.isdigit():
+            temp+=i
+        else:
+            arr.append(temp)
+            arr.append(i)
+            temp=""
+    arr.append(temp) #마지막 숫자 
+    
+    for o in op:
+        stack=[]
+        while len(arr):
+            temp=arr.pop(0)
+            if temp==o:
+                stack.append(operation(stack.pop(), arr.pop(0), o))
+            else:
+                stack.append(temp)
+        arr=stack
+        
+    return abs(int(arr[-1]))
+
+def solution(expression):
+    
+    op = ['+', '-', '*']
+    op = list(permutations(op, 3))
+    answer = -1
+    for i in op:
+        answer=max(answer,calculate(expression, i))
+        
+    return answer
