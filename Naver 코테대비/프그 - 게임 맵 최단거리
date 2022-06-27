@@ -51,5 +51,5 @@ def solution(maps):
                 if visit[nx][ny]==-1:
                     visit[nx][ny]=visit[x][y]+1
                     q.append((nx,ny))
-                    
+                     
     return visit[-1][-1]
