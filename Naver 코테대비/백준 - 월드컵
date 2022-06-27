@@ -47,3 +47,4 @@ for _ in range(4):
         answer.append(0)
 
 print(*answer)
+ 
