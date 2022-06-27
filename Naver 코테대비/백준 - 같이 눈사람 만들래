@@ -2,23 +2,20 @@ N=int(input())
 snow=list(map(int,input().split()))
 snow.sort()
 
-answer=1e9
-
 def two_pointer():
-    global answer
+    answer=1e9
     for i in range(N):
         for j in range(i+3,N):
-            temp1=snow[i]+snow[j] #눈사람1의 높이 
+            temp1=snow[i]+snow[j] # 눈사람1의 높이 
             left=i+1
             right=j-1
             while left<right:
-                temp2=snow[left]+snow[right]
-                if temp1==temp2:
-                    answer=0
+                temp2=snow[left]+snow[right] # 눈사람2의 높이 
+                if temp1==temp2: # 같으면 0이 끝 
                     return 0 
                 if answer > abs(temp1-temp2):
                     answer = abs(temp1-temp2)
-                elif (temp1-temp2) > 0:
+                if (temp1-temp2) > 0:
                     left+=1
                 else:
                     right-=1
