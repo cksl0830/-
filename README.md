@@ -18,14 +18,6 @@
 
 
 ## 2. 모듈 정리
-- #### from collections import Counter
-  > list = ['kim', 'kim', 'park', 'choi', 'kim', 'kim', 'kim', 'choi', 'park', 'choi']    
-  dict = collections.Counter(list)   
-  print(counter)   
-  Counter({'kim': 5, 'choi': 3, 'park': 2})   
-  
-  > counter끼리 뺄셈도 가능하다! (마라톤 완주 문제에서 사용) 
-
 
 - #### from bisect import bisect_left, bisect_right
    ```
