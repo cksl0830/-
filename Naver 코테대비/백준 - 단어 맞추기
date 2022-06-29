@@ -1,0 +1,20 @@
+N=int(input())
+for _ in range(N):
+    word=list(input())
+    k=-1
+    for i in range(len(word)-1):
+        if word[i] < word[i + 1]:
+            k = i 
+    if k==-1:
+        print(''.join(word))
+        continue
+    
+    for i in range(len(word)-1, -1, -1):
+        if word[k] < word[i]:
+            j = i
+            break
+ 
+    word[k], word[j] = word[j], word[k]
+    word[k+1:]=list(reversed(word[k+1:]))
+
+    print(''.join(word))
