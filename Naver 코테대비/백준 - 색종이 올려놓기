@@ -1,0 +1,14 @@
+n=int(input())
+data=[]
+for _ in range(n):
+    data.append(sorted(map(int,input().split())))   # 정렬해서 담기 (가로세로 중 큰 변만 비교하면됨)
+
+data.sort()
+dp=[1]*n
+
+for i in range(1,n):
+    for j in range(i):
+        if data[i][1]>=data[j][1]:
+            dp[i]=max(dp[i],dp[j]+1)
+
+print(max(dp))
