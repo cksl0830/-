@@ -1,0 +1,27 @@
+before=list(input())
+after=list(input())
+
+def dfs(target):
+    if target==before:
+        return True
+    if len(target) <= len(before):
+        return False
+    
+    if target[0]=='B':
+        target.reverse()
+        target.pop()
+        if dfs(target):
+            return True
+        target.append('B')
+        target.reverse()
+    
+    if target[-1]=='A':
+        target.pop()
+        if dfs(target):
+            return True
+        target.append('A')
+    
+if dfs(after):
+    print(1)
+else:
+    print(0)
