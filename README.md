@@ -1,6 +1,6 @@
 # Python 알고리즘 코테 준비
 
-## 함수
+## < 함수 >
 
 - #### strip()
   >양끝 공백 제거 (왼쪽은 lstrip / 오른쪽은 rstrip)
@@ -17,7 +17,7 @@
   > True 값 반환 
 
 
-## 모듈
+## < 모듈 >
 
 - #### from bisect import bisect_left, bisect_right
    ```
