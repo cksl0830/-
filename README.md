@@ -14,7 +14,8 @@
 * #### startswith 접두어 함수
   > s = '가나다라 마바사아 자차카타 파하'    
   > s.startswith('가나다')    
-  > True 값 반환 
+  > True 값 반환     
+
 
 
 ## < 모듈 >
