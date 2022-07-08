@@ -1,0 +1,12 @@
+n = int(input())
+power = list(map(int, input().split()))
+happy = list(map(int, input().split()))
+
+dp = [0] * (100)
+
+for i in range(n):
+    for j in range(99, -1, -1):
+        if j >= power[i]:
+            dp[j] = max(dp[j-power[i]] + happy[i], dp[j])
+
+print(max(dp))
