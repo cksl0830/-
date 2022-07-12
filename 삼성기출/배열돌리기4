@@ -1,0 +1,29 @@
+from itertools import permutations
+from copy import deepcopy
+
+N, M, K = map(int, input().split())
+graph = [list(map(int, input().split())) for _ in range(N)]
+rcs = [list(map(int, input().split())) for _ in range(K)]
+answer = 1e9
+
+for perm in permutations(rcs,K):
+ 
+    temp = deepcopy(graph)
+    for r, c, s in perm:
+        r -= 1
+        c -= 1
+        # 시계방향으로 돌리기
+        for n in range(s, 0, -1):
+            tmp = temp[r-n][c+n]
+            temp[r-n][c-n+1:c+n+1] = temp[r-n][c-n:c+n]  # 오른쪽으로
+            for row in range(r-n, r+n):  # 위로
+                temp[row][c-n] = temp[row+1][c-n]
+            temp[r+n][c-n:c+n] = temp[r+n][c-n+1:c+n+1]  # 왼쪽으로
+            for row in range(r+n, r-n, -1):  # 아래로 
+                temp[row][c+n] = temp[row-1][c+n]
+            temp[r-n+1][c+n] = tmp
+
+    for row in temp:
+        answer = min(answer, sum(row))
+        
+print(answer)
