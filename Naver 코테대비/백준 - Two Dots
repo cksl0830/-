@@ -4,14 +4,8 @@ visit = [[0] * M for _ in range(N)]
 dx = [0,0,1,-1]
 dy = [1,-1,0,0]
 flag = False
-
-def scope(x,y):
-    if x>=0 and x<N and y>=0 and y<M:
-        return True
-    else:
-        return False
  
-def dfs(x,y,px,py,ball):
+def dfs(x,y,px,py,color):
     if visit[x][y]==1:
         return True
     visit[x][y]=1
@@ -20,8 +14,8 @@ def dfs(x,y,px,py,ball):
         nx=x+dx[i]
         ny=y+dy[i]
         if nx!=px or ny!=py:
-            if scope(nx,ny) and graph[nx][ny]==ball :
-                if dfs(nx,ny,x,y,ball): 
+            if 0<=nx<N and 0<=ny<M and graph[nx][ny]==color :
+                if dfs(nx,ny,x,y,color): 
                     return True
     return False
  
