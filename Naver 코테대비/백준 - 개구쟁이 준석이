@@ -1,0 +1,46 @@
+def half(word, front, back):
+    global answer
+    if back - front > 1:
+        half(swap(word, front, (front+back)//2), (front+back)//2, back)
+        half(swap(word, (front+back)//2, back), front, (front+back)//2)
+        if (back-front)%2 != 0:
+            half(swap(word, front, (front+back)//2+1), (front+back)//2+1, back)
+            half(swap(word, (front+back)//2+1, back), front, (front+back)//2+1)
+    else:
+        if not word in answer:
+            answer.append(word)
+
+def swap(word, front, back):
+    word1 = word[:front]
+    word2 = word[front:back]
+    word3 = word[back:]
+    return word1+word2[::-1]+word3
+
+n = int(input())
+temp = input().split()
+word = input()
+
+arr=[]
+words=[]
+answer = []
+wordlen = 0
+
+for i in range(n):
+    wordlen += int(temp[(2*i)+1])
+
+for i in range(len(word)-wordlen+1):
+    arr.append(word[i:i+wordlen])
+
+for i in arr:
+    flag = True
+    for j in range(n):
+        if i.count(temp[j*2]) != int(temp[(j*2)+1]):
+            flag = False
+            break
+    if flag:
+        words.append(i)
+        
+for w in words:
+    half(w, 0, len(w))
+
+print(len(answer))
