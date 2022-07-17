@@ -2,7 +2,7 @@
 
 ## < 함수 >
 
-- #### strip()
+- #### strip() 
   >양끝 공백 제거 (왼쪽은 lstrip / 오른쪽은 rstrip)
 
 * #### rjust, ljust, zfill     [str 정렬함수]
