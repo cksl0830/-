@@ -1,0 +1,57 @@
+import copy
+
+dx=[-1,0,1,0]
+dy=[0,1,0,-1]
+ 
+def dfs(graph, x, y, position, n, num):
+    
+    temp = [position]
+    
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        
+        if 0 <= nx < n and 0 <= ny < n and graph[nx][ny] == num:
+            graph[nx][ny] = 2
+            temp = temp + dfs(graph, nx, ny, (position[0]+dx[i], position[1]+dy[i]), n, num)
+    
+    return temp  
+    
+def rotate(table):
+    
+    table = list(zip(*table))
+    table = [list(s)[::-1] for s in table]
+    
+    return table
+
+def solution(game_board, table):
+    answer = 0
+    temp_board = copy.deepcopy(game_board)
+    
+    n = len(game_board)
+    block = []
+    
+    for i in range(n):
+        for j in range(n):
+            if temp_board[i][j] == 0:
+                temp_board[i][j] = 2
+                result = dfs(temp_board, i, j, [0, 0], n, 0)[1:]
+                block.append(result)
+    
+    for _ in range(4):
+        table = rotate(table)
+        temp_table = copy.deepcopy(table)
+
+        for i in range(n):
+            for j in range(n):
+                if temp_table[i][j] == 1:
+                    temp_table[i][j] = 2
+                    result = dfs(temp_table, i, j, [0, 0], n, 1)[1:]
+                    if result in block:
+                        block.pop(block.index(result))
+                        answer += (len(result) + 1)
+                        table = copy.deepcopy(temp_table)
+                    else:
+                        temp_table = copy.deepcopy(table)
+                        
+    return answer
