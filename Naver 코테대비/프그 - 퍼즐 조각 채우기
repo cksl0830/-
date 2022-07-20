@@ -2,7 +2,7 @@ import copy
 
 dx=[-1,0,1,0]
 dy=[0,1,0,-1]
-
+ 
 def dfs(graph, x, y, position, n, num):
     
     temp = [position]
