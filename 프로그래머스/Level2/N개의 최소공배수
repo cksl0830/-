@@ -9,3 +9,6 @@ def solution(arr):
         answer = answer*num // math.gcd(answer, num)     
 
     return answer
+
+
+** 최소공배수 : 두 수의 곱 // 두 수의 최대공약수  
