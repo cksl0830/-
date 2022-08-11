@@ -1,0 +1,7 @@
+def solution(n):
+    num=n
+    while True:
+        num+=1
+        temp=bin(num)[2:]
+        if temp.count('1')==str(bin(n)[2:]).count('1'):
+            return num 
