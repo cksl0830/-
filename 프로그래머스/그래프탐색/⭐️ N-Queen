@@ -1,0 +1,31 @@
+def check(idx, i, row): #대각선에 있는지 체크
+    for j in range(idx):
+        if idx - j == abs(row[j] - i):
+            return True
+    return False
+
+def dfs(n, idx, row, col):
+    
+    global answer
+    
+    if idx == n:
+        answer += 1
+        return
+    
+    for i in range(n):
+        if col[i] == 1: 
+            continue
+        if check(idx, i, row): 
+            continue
+        
+        row[idx] = i
+        col[i] = 1
+        dfs(n, idx+1, row, col)
+        col[i] = 0
+
+answer = 0
+def solution(n):
+    row = [0] * n # 행
+    col= [0] * n # 열
+    dfs(n, 0, row, col)
+    return answer
