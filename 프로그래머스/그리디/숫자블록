@@ -1,0 +1,20 @@
+import math 
+
+def solution(begin, end):
+    
+    answer = []
+    
+    for i in range(begin, end+1):
+        
+        if i==1:
+            answer.append(0)
+        else:
+            for j in range(2, int(math.sqrt(i))+1):
+                if i%j == 0 and i//j <= 10000000:
+                    k = i//j  # j가 2부터 커지기 때문에 처음 만나는 i//j가 약수 중 가장 큰 값
+                    answer.append(k)
+                    break
+            else:
+                answer.append(1)
+    
+    return answer
