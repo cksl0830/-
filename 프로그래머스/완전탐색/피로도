@@ -5,14 +5,14 @@ def solution(k, dungeons):
     dungeons_list = [i for i in range(len(dungeons))]
     
     for i in range(len(dungeons),0,-1):
-        for cases in permutations(dungeons_list,i):
+        for arr in permutations(dungeons_list,i):
             now = k
             check = True
-            for case in cases:
-                if now < dungeons[case][0]:
+            for j in arr:
+                if now < dungeons[j][0]:
                     check = False
                     break
                 else:
-                    now -= dungeons[case][1]
+                    now -= dungeons[j][1]
             if check:
                 return i
