@@ -4,7 +4,7 @@ answer = INF
 dx=[0, 1, 0, -1]
 dy=[1, 0, -1, 0] 
 
-def solution(board):
+def solution(board):  
     
     n=len(board)
     dp=[[INF]*n for _ in range(n)]
