@@ -3,7 +3,7 @@ def solution(gems):
     kind = len(set(gems)) # 보석의 종류수
     dic = {} # 보석 종류별로 개수를 셀 딕셔너리
 
-    start = 0 
+    start = 0  
     end = 0 
     temp = len(gems)+1
 
