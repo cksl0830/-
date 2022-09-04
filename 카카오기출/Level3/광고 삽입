@@ -12,7 +12,7 @@ def solution(play_time, adv_time, logs):
     
     if play_time==adv_time:
         return "00:00:00"
-    
+     
     play = timeTonum(play_time)
     adv = timeTonum(adv_time)
     clock = [0]*(play+1)
