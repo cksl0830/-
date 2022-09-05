@@ -9,7 +9,7 @@ def solution(n, k, cmd):
     answer=["O"]*n
     stack=[] 
     
-    for c in cmd:        
+    for c in cmd:         
         if c[0]=="U":
             tmp=int(c[2:])
             for _ in range(tmp):
