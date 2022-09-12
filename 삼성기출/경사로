@@ -21,7 +21,7 @@ def road(now):
                 if now[j - 1] == now[j - k - 1]:   # 높이가 같은 경우 사용 여부 체크 
                      used[j - k - 1] = 1
     return 1   # 모두 문제없이 설치된 경우 가능함을 출력 
-
+  
 # 가로 확인
 for i in range(n):
     used = [0]*n # 사용 여부
