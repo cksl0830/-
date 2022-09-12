@@ -37,4 +37,4 @@ for i in range(n):
     if road(temp): # 현재 확인할 길을 넣어준다.
         result += 1
 
-print(result)
+print(result)  
