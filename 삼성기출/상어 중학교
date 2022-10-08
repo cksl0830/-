@@ -99,7 +99,7 @@ while True:
     # 5. 90회전
     graph = rotate(graph)
 
-    # 6. 중력
+    # 6. 중력 
     gravity(graph)
 
 print(score)
