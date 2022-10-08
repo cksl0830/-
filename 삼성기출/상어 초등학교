@@ -47,4 +47,4 @@ for i in range(n):
         if answer != 0:
             result += 10 ** (answer - 1)
 
-print(result)
+print(result) 
